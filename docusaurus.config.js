@@ -8,13 +8,14 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 const config = {
   title: 'Badger',
   tagline: 'The Missing Optimizer in ACR',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/',
+  url: 'https://SLAC-ML.github.io',
+  baseUrl: '/Badger/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'SLAC-ML', // Usually your GitHub org/user name.
   projectName: 'Badger', // Usually your repo name.
+  trailingSlash: false,
 
   presets: [
     [
