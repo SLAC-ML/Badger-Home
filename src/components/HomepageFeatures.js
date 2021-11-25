@@ -19,7 +19,7 @@ const FeatureList = [
     description: (
       <>
         Badger can be extended through its plugin system. Shape
-        your algorithm/problem into a plugin in 5 minites.
+        your algorithm/problem into a plugin in 5 minutes.
       </>
     ),
   },
