@@ -98,12 +98,42 @@ The reasons to divide the optimization problem definition into two parts (enviro
 
 ## Features
 
+One of Badger's core features is the ability to extend easily. Badger offers two ways to extend its capibility: making a plugin, or implementing an extension.
+
 ### Plugin System
+
+Algorithms, interfaces, and environments are all plugins in Badger. A plugin in Badger is a set of python scripts, a YAML config file, and an optional README.md. A typical file structure of a plugin looks like:
+
+```shell title="Plugin File Structure"
+|--<PLUGIN_ID>
+    |--__init__.py
+    |--configs.yaml
+    |--README.md
+    |--...
+```
+
+The role/feature of each file will be discussed in details later in the [create a plugin](guides/create-a-plugin) section.
+
+:::tip
+
+One unique feature of Badger plugins is that plugins can be nested -- you can use any available plugins inside your own plugin. Say, one could combine two environments and create a new one effortlessly, thanks to this nestable nature of Badger plugins. You could explore the infinity possibilities by nesting plugins together with your imagination!
+
+:::
 
 ### Extension System
 
-## Design Principles
+Extension system is another way to extend Badger's capabilities, and in a sense it's more powerful than the plugin system, since it could make a batch of existing algorithms available in Badger in a few lines of code!
+
+Let's assume that we already have an optimization platform/framework that provides a dozen of algorithms, and we'd like to use these algorithms to optimize on our machine environment. One way to do that is porting all these algorthms to Badger through the plugin system, and use Badger to perform the optimization. Extension system was designed just for this situation, since porting the algorithms one by one is tedious and inefficient. Extension system provides the APIs that are required to be implemented in order to "port" all the algorithms of another optimization framework/platform in one go. More details about extension system can be found in the [implement an extension](guides/implement-an-extension) section.
+
+With the extension system, Badger could use any existing algorithms from another optimization package. Currently, Badger has the following extensions available:
+
+- [xopt](https://github.com/ChristopherMayes/Xopt)
+
+And more extensions are on the way (for example, [teeport](https://teeport.ml/intro) extension for remote optimization)!
+
+<!-- ## Design Principles
 
 ### Decouple algorithm and environment
 
-### Decouple backend and frontend
+### Decouple backend and frontend -->
