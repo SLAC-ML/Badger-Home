@@ -36,7 +36,7 @@ To run an optimization in Badger, the users need to define the routine. Badger p
 
 An interface in Badger is a piece of code that talks to the underlying control system/machine. It communicates to the control system to:
 
-- Set a process variable (PVs) to some specific value
+- Set a process variable (PV) to some specific value
 - Get the value of a PV
 
 An interface is also responsible to perform the configuration needed for communicating with the control system, and the configuration can be customized by passing a `params` dictionary to the interface.
