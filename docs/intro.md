@@ -18,7 +18,7 @@ Badger offers 3 modes to satisfy different user groups:
 - CLI mode, for the command line lovers or the situation without a screen, configure and run the whole optimization in one line efficiently
 - API mode, for the algorithm developers, use the environments provided by Badger without the troubles to configure them
 
-## Important Concepts
+## Important concepts
 
 As shown in the Badger schematic plot above, there are several terms/concepts in Badger, and their meaning are a little different with regard to their general definitions. Let's briefly go through the terms/concepts in Badger in the following sections.
 
@@ -71,7 +71,7 @@ One environment could support multiple **relevant** optimization problems -- jus
 
 :::
 
-### Routine Config
+### Routine config
 
 A routine config is the counterpart of optimization problem abstraction with regard to environment. An optimization problem can be fully defined by an environment with a routine config.
 
@@ -100,7 +100,7 @@ The reasons to divide the optimization problem definition into two parts (enviro
 
 One of Badger's core features is the ability to extend easily. Badger offers two ways to extend its capibility: making a plugin, or implementing an extension.
 
-### Plugin System
+### Plugin system
 
 Algorithms, interfaces, and environments are all plugins in Badger. A plugin in Badger is a set of python scripts, a YAML config file, and an optional README.md. A typical file structure of a plugin looks like:
 
@@ -120,7 +120,7 @@ One unique feature of Badger plugins is that plugins can be nested -- you can us
 
 :::
 
-### Extension System
+### Extension system
 
 Extension system is another way to extend Badger's capabilities, and in a sense it's more powerful than the plugin system, since it could make a batch of existing algorithms available in Badger in a few lines of code!
 
