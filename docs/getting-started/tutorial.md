@@ -156,9 +156,9 @@ We just saved the routine of the run as `helloworld`. Now you could view the rou
 badger routine helloworld
 ```
 
-## Re-run an optimization
+## Rerun an optimization
 
-We can re-run a saved routine in Badger. Let's re-run the `helloworld` routine that we just saved:
+We can rerun a saved routine in Badger. Let's rerun the `helloworld` routine that we just saved:
 
 ```shell
 badger routine helloworld -r
@@ -240,3 +240,5 @@ data:
 ## Create a simple environment
 
 Now let's create a simple Badger environment and run optimization on it.
+
+**WIP**
