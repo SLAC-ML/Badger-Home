@@ -8,7 +8,7 @@ Badger is essentially a python package. It's recommended to install and test it 
 
 ## Requirements
 
-- Python version >= 3.6. Python 3.7 is recommended
+- Python version >= 3.6. Python 3.7+ is recommended
 
 ## Install core package
 
@@ -23,6 +23,18 @@ Or
 ```shell
 conda install -c conda-forge badger-opt
 ```
+
+:::caution
+
+If you go with the conda option and you are using macOS, the Badger GUI would need a specific version of Qt to work properly. Please run the following command in the conda env in which you installed `badger-opt`:
+
+```shell
+conda install qt=5.12.5
+```
+
+The potential GUI-not-launching issue should be gone now.
+
+:::
 
 ## Install sample plugins
 
