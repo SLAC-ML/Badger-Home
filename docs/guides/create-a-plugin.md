@@ -215,6 +215,26 @@ observations:
   - mean
 ```
 
+:::caution
+
+If you use an older version of Badger, you would encounter the following error when you do `badger env myenv`:
+
+```
+Can't instantiate abstract class Environment with abstract method get_default_params
+```
+
+To get around this issue, simply put the following method inside the `myenv` environment class definition:
+
+```python
+    @staticmethod
+    def get_default_params():
+        return None
+```
+
+Then you should get the expected printouts. The usage of the `get_default_params` method will be covered in [future sections](#incorperate-hyper-parameters).
+
+:::
+
 Now you can take `myenv` for a spin -- just write some routine configs and run some algorithm (say, `silly` the random sampler) on our newly created env, to see if everything works as expected.
 
 ### Advanced topics
