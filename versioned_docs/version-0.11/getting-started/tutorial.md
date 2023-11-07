@@ -76,11 +76,12 @@ Proceed ([y]/n)?
 Hit return to confirm. Badger will print out a table of all the evaluated
 solutions along the run:
 
-```shell {3,19} title="output"
+```shell title="output"
 |    iter    |     c1     |     x2     |
 ----------------------------------------
 |  1         | -1.094     |  0.07432   |
 |  2         |  3.563     |  2.159     |
+// highlight-next-line
 |  3         |  8.749     |  3.138     |
 |  4         |  5.351     |  2.54      |
 |  5         |  8.17      |  3.045     |
@@ -97,6 +98,7 @@ solutions along the run:
 |  16        |  6.205     |  2.703     |
 |  17        | -1.1       |  0.005409  |
 |  18        |  8.224     |  3.054     |
+// highlight-next-line
 |  19        |  7.584     |  2.947     |
 |  20        | -0.8961    |  0.4515    |
 |  21        | -1.093     |  0.08082   |
