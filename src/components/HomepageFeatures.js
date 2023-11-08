@@ -5,7 +5,7 @@ import styles from './HomepageFeatures.module.css'
 const FeatureList = [
   {
     title: 'Easy to Use',
-    Svg: require('../../static/img/banner_a.svg').default,
+    Svg: require('@site/static/img/banner_a.svg').default,
     description: (
       <>
         Badger was specifically designed for operators. You could re-run an
@@ -15,17 +15,17 @@ const FeatureList = [
   },
   {
     title: 'Fast to Extend',
-    Svg: require('../../static/img/banner_b.svg').default,
+    Svg: require('@site/static/img/banner_b.svg').default,
     description: (
       <>
         Badger can be extended through its plugin system. Shape
-        your algorithm/problem into a plugin in 5 minutes.
+        your optimization problem into a plugin in 5 minutes.
       </>
     ),
   },
   {
     title: 'Multiple Mode',
-    Svg: require('../../static/img/banner_c.svg').default,
+    Svg: require('@site/static/img/banner_c.svg').default,
     description: (
       <>
         Badger can be used as a library, a command line tool, or a GUI
