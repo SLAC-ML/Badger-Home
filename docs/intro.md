@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Introduction
 
-Badger is an optimizer specifically designed for Accelerator Control Room (ACR). It's the spiritual successor of [Ocelot optimizer](https://github.com/ocelot-collab/optimizer).
+Badger is an optimizer specifically designed for Accelerator Control Room (ACR).
 
 ![Badger architecture](/img/intro/architecture.png)
 
