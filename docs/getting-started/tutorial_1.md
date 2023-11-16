@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Tutorial
+# Tutorial (CLI mode)
 
 :::note Heads-up
 
@@ -11,8 +11,6 @@ Make sure you have Badger [installed and setup](./installation).
 :::
 
 Let's discover **Badger in less than 5 minutes**. All of the following commands are assumed to be run in a terminal (Mac, Windows, and Linux are supported).
-
-## Get basic information about Badger
 
 First let's verify that Badger has been installed and configured correctly:
 

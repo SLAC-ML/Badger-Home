@@ -6,11 +6,11 @@ sidebar_position: 1
 
 Badger is an optimizer specifically designed for Accelerator Control Room (ACR).
 
-![Badger architecture](/img/intro/architecture.png)
+![Badger architecture](/img/intro/architecture_re.png)
 
-Badger abstracts an optimization run as an optimization algorithm interacts with an environment, by following some pre-defined rules. As visualized in the picture above, the environment is controlled by the algorithm and tunes/observes the control system/machine through an interface, while the users control/monitor the optimization flow through a graphical user interface (GUI) or a command line interface (CLI).
+Badger abstracts an optimization run as an optimization algorithm interacts with an environment, by following some pre-defined rules.[^vocs] As visualized in the picture above, the environment is controlled by the algorithm and tunes/observes the control system/machine through an interface, while the users control/monitor the optimization flow through a graphical user interface (GUI) or a command line interface (CLI).
 
-Algorithms, environments, and interfaces in Badger are all managed through a plugin system, and could be developed and maintained separately. The application interfaces (API) for creating the plugins are very straightforward and simple, yet abstractive enough to handle various situations.
+Environments and interfaces in Badger are managed through a plugin system, and could be developed and maintained separately. While the algorithms are provided by the [Xopt](https://github.com/ChristopherMayes/Xopt) package. The application interfaces (API) for creating the plugins are very straightforward and simple, yet abstractive enough to handle various situations.
 
 Badger offers 3 modes to satisfy different user groups:
 
@@ -96,13 +96,13 @@ The reasons to divide the optimization problem definition into two parts (enviro
 - Better code reuse
 - Operations in ACR usually require slightly changing a routine frequently, so it's good to have an abstraction for the frequently changed configurations (routine config), to avoid messing with the optimization source code
 
-## Features
+## Extensibility
 
 One of Badger's core features is the ability to extend easily. Badger offers two ways to extend its capibility: making a plugin, or implementing an extension.
 
 ### Plugin system
 
-Algorithms, interfaces, and environments are all plugins in Badger. A plugin in Badger is a set of python scripts, a YAML config file, and an optional README.md. A typical file structure of a plugin looks like:
+Environments and interfaces are all plugins in Badger.[^algo] A plugin in Badger is a set of python scripts, a YAML config file, and an optional README.md. A typical file structure of a plugin looks like:
 
 ```shell title="Plugin File Structure"
 |--<PLUGIN_ID>
@@ -122,18 +122,13 @@ One unique feature of Badger plugins is that plugins can be nested -- you can us
 
 ### Extension system
 
-Extension system is another way to extend Badger's capabilities, and in a sense it's more powerful than the plugin system, since it could make a batch of existing algorithms available in Badger in a few lines of code!
-
-Let's assume that we already have an optimization platform/framework that provides a dozen of algorithms, and we'd like to use these algorithms to optimize on our machine environment. One way to do that is porting all these algorthms to Badger through the plugin system, and use Badger to perform the optimization. Extension system was designed just for this situation, since porting the algorithms one by one is tedious and inefficient. Extension system provides the APIs that are required to be implemented in order to "port" all the algorithms of another optimization framework/platform in one go. More details about extension system can be found in the [implement an extension](guides/implement-an-extension) section.
-
-With the extension system, Badger could use any existing algorithms from another optimization package. Currently, Badger has the following extensions available:
-
-- [xopt](https://github.com/ChristopherMayes/Xopt)
-
-And more extensions are on the way (for example, [teeport](https://teeport.ml/intro) extension for remote optimization)!
+Extension system is the way to extend Badger's data analysis and visualization capabilities.
 
 <!-- ## Design Principles
 
 ### Decouple algorithm and environment
 
 ### Decouple backend and frontend -->
+
+[^vocs]: To be more specific, the variables, objectives, constraints, and other stuff. We call it VOCS.
+[^algo]: Would like to incorporate your own algorithm? Consider making the contribution to [Xopt](https://github.com/ChristopherMayes/Xopt) -- it's not too hard to shape your algorithm into a generator!
