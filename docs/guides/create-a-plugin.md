@@ -4,15 +4,62 @@ sidebar_position: 4
 
 # Create a plugin
 
-Plugins have three types:
+Plugins have two types:
 
-- Algorithm: function
 - Interface: class
 - Environment: class
 
-## Create an algorithm plugin
+Interface is the low-level layer between the machine/simulation and the environment that deals with the fundamental communications. It can be treated as an abstract of the underlying control system. Interface is optional **BUT** recommended! The pros of having an interface:
+
+- It can be reused across different environments, so that you don't have to rewrite the same communication logic again and again[^intf-exp]
+- Unlike the environment, all the raw data that go through the interface can be recorded and archived, those raw data could include the intermediate measurements/observations that used to calculate the objectives/constraints/states[^env-cons]
+
+Environment, on the other hand, abstracts the specific machine to be optimized. It contains the necessary information regarding the tuning knobs and the measurements, as well as the way to get and/or set them. Environment is the core of defining the optimization problem in Badger and it is mandatory.
+
+This guide will go through the basic components that compose a custom interface/environment by creating a simplest but full-featured interface/environment plugin. Let's get started.
 
 ## Create an interface plugin
+
+The file structure of a Badger interface plugin looks like this:
+
+```shell title="Badger interface plugin file structure"
+|--<INTERFACE_ID>
+    |--__init__.py
+    |--configs.yaml
+    |--README.md
+    |--...
+```
+
+Let's create a simple interface that has 9 channels (8 input channels and 1 output channel), where the output channel is the L2 norm of all the input channel values. We'll name it `myintf`.
+
+Assume that the Badger plugin root has been pointed to some directory `PLUGIN_ROOT` on your computer, then we can create a new folder `myintf` inside `PLUGIN_ROOT/interfaces/`, and we put the following files with the given content into the newly created folder:
+
+First the main script file:
+
+```python title="myintf/__init__.py"
+from badger import interface
+
+
+class Interface(interface.Interface):
+
+    name = 'myintf'
+
+    def get_values(self, channel_names: list):
+        pass
+
+    def set_values(self, channel_inputs: dict):
+        pass
+```
+
+Then the configs file:
+
+```yaml title="myintf/configs.yaml"
+---
+name: myintf
+version: "0.1"
+dependencies:
+  - badger-opt
+```
 
 ## Create an environment plugin
 
@@ -301,3 +348,6 @@ class Environment(environment.Environment):
     def _get_obs(self, obs):
         return 0
 ``` -->
+
+[^intf-exp]: One example is that both LCLS and NSLS use Epics as the control system, so an Epics interface can be shared between the LCLS and NSLS Badger environments
+[^env-cons]: Environment can only record the VOCS, not the intermediate measurements. Say, to calculate the FEL pulse energy, one needs to average over a buffer of values. It is the averaged value being recorded in the archived run data, not the raw buffers
