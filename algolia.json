@@ -1,10 +1,10 @@
 {
-  "index_name": "badger",
+  "index_name": "badger_slaclab",
   "start_urls": [
-    "https://slac-ml.github.io/Badger/"
+    "https://slaclab.github.io/Badger/"
   ],
   "sitemap_urls": [
-    "https://slac-ml.github.io/Badger/sitemap.xml"
+    "https://slaclab.github.io/Badger/sitemap.xml"
   ],
   "sitemap_alternate_links": true,
   "stop_urls": [

@@ -11,12 +11,12 @@ const darkCodeTheme = require('prism-react-renderer').themes.dracula
 const config = {
   title: 'Badger',
   tagline: 'The Missing Optimizer in ACR',
-  url: 'https://SLAC-ML.github.io',
+  url: 'https://slaclab.github.io',
   baseUrl: '/Badger/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'SLAC-ML', // Usually your GitHub org/user name.
+  organizationName: 'slaclab', // Usually your GitHub org/user name.
   projectName: 'Badger', // Usually your repo name.
   trailingSlash: false,
 
@@ -79,7 +79,7 @@ const config = {
             // dropdownActiveClassDisabled: true,
           },
           {
-            href: 'https://github.com/SLAC-ML/Badger',
+            href: 'https://github.com/slaclab/Badger',
             label: 'GitHub',
             position: 'right',
           },
@@ -127,7 +127,7 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/SLAC-ML/Badger',
+                href: 'https://github.com/slaclab/Badger',
               },
             ],
           },
@@ -144,7 +144,7 @@ const config = {
         appId: 'WPJQG5P0EZ',
         // Public API key: it is safe to commit it
         apiKey: 'b63157c581646ac999c9ce4c3569e3e3',
-        indexName: 'badger',
+        indexName: 'badger_slaclab',
         // Optional: see doc section below
         contextualSearch: true,
         // Optional: Algolia search parameters

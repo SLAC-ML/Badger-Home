@@ -38,10 +38,10 @@ The potential GUI-not-launching issue should be gone now.
 
 ## Install sample plugins
 
-Clone the [badger plugins repo](https://github.com/SLAC-ML/Badger-Plugins) to some directory on your computer:
+Clone the [badger plugins repo](https://github.com/slaclab/Badger-Plugins) to some directory on your computer:
 
 ```shell
-git clone https://github.com/SLAC-ML/Badger-Plugins.git
+git clone https://github.com/slaclab/Badger-Plugins.git
 ```
 
 ## Set up Badger

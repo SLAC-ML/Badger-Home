@@ -35,7 +35,7 @@ jobs:
           node-version: '18.x'
       - uses: webfactory/ssh-agent@v0.5.0
         with:
-          ssh-private-key: ${{ secrets.GH_PAGES_DEPLOY }}
+          ssh-private-key: ${{ secrets.GH_PAGES_DEPLOY_SLACLAB }}
       - name: Release to GitHub Pages
         env:
           USE_SSH: true
