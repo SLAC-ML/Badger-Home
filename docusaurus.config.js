@@ -97,7 +97,7 @@ const config = {
               },
               {
                 label: 'Tutorial',
-                to: '/docs/getting-started/tutorial',
+                to: '/docs/getting-started/tutorial_0',
               },
             ],
           },
