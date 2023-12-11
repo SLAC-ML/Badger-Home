@@ -100,133 +100,137 @@ from badger.interface import Interface
 class Environment(environment.Environment):
 
     name = 'myenv'
+    variables = {}
+    observables = []
 
-    def __init__(self, interface: Interface, params):
-        super().__init__(interface, params)
-        # Add other logic, try to not do time-consuming stuff here
+    def get_variables(self, variable_names: list[str]) -> dict:
+        return {}
 
-    @staticmethod
-    def list_vars():
-        return []
-
-    @staticmethod
-    def list_obses():
-        return []
-
-    def _get_var(self, var):
-        return 0
-
-    def _set_var(self, var, x):
+    def set_variables(self, variable_inputs: dict[str, float]):
         pass
 
-    def _get_obs(self, obs):
-        return 0
+    def get_observables(self, observable_names: list[str]) -> dict:
+        return {}
 ```
 
 Several things to note regarding the boilerplate code:
 
 - It should have a class variable called `name`, and it should match the folder name of the plugin
-- There are 5 methods that are required to be implemented to create a proper Badger env:
-    - `list_vars`: Get a list of all the supported variables
-    - `list_obses`: Get a list of all the supported observations
-    - `_get_var`: Get the value of a specific variable
-    - `_set_var`: Set a specific variable to some value
-    - `_get_obs`: Get the value of a specific observation
+- In order to create a proper Badger env, there are 2 **CLASS** variables:
+    - `variables`: A dictionary of all the supported variables, key is the variable name, value is the range of the variable
+    - `observables`: A list of all the supported observables
+
+    and 3 methods:
+    - `get_variables`: Get a dictionary contains values of a given list of variables
+    - `set_variables`: Set the variables in the env with a given dictionary of variables and the target values
+    - `get_observables`: Get a dictionary contains values of a given list of observables
+
+    that are required to be implemented.
 
 :::tip
 
-As the comment says, try to avoid doing time-consuming thing in `__init__` method. Badger would create an instance of the environment when users try to get the details of the plugin (say, when `badger env myenv` is called in CLI mode), so just put some light-computing code there in the constructor would provide the users a smoother experience.
+Try to avoid doing time-consuming thing in `__init__` method. Badger would create an instance of the environment when users try to get the details of the plugin (say, when `badger env myenv` is called in CLI mode), so just put some light-computing code there in the constructor would provide the users a smoother experience.
 
 :::
 
-Okay, now we can start to implement the methods. Assume that our sample environment has 3 variables: `x`, `y`, and `z`, it also has 2 observations: `norm`, and `mean`. Then the `list_vars` and `list_obses` methods should look like:
+Okay, now we can start to implement the methods. Assume that our sample environment has 3 variables: `x`, `y`, and `z`, with range of [0, 1]. It also has 2 observations: `norm`, and `mean`. Then the `variables` and `observables` class variables should look like:
 
 ```python
-    @staticmethod
-    def list_vars():
-        return ['x', 'y', 'z']
-
-    @staticmethod
-    def list_obses():
-        return ['norm', 'mean']
+    variables = {
+        'x': [0, 1],
+        'y': [0, 1],
+        'z': [0, 1],
+    }
+    observables = ['norm', 'mean']
 ```
 
 Our custom env is so simple that we don't really need an interface here. Let's implement the getter and setter for the variables:
 
 ```python
-    def __init__(self, interface: Interface, params):
-        super().__init__(interface, params)
-        self.variables = {
-            'x': 0,
-            'y': 0,
-            'z': 0,
-        }
+    # Internal variables start with a single underscore
+    _variables = {
+        'x': 0,
+        'y': 0,
+        'z': 0,
+    }
 
-    def _get_var(self, var):
-        return self.variables[var]
+    def get_variables(self, variable_names: list[str]) -> dict:
+        variable_outputs = {v: self._variables[v] for v in variable_names}
 
-    def _set_var(self, var, x):
-        self.variables[var] = x
+        return variable_outputs
+
+    def set_variables(self, variable_inputs: dict[str, float]):
+        for var, x in variable_inputs.items():
+            self._variables[var] = x
 ```
 
-Here we use a dictionary called `variables` to hold the values for the variables.
+Here we use a dictionary called `_variables` to hold the values for the variables.
 
-Now let's add observation related logic:
+Now let's add observable related logic:
 
 ```python
-    def _get_obs(self, obs):
-        x = self.variables['x']
-        y = self.variables['y']
-        z = self.variables['z']
+    def get_observables(self, observable_names: list[str]) -> dict:
+        x = self._variables['x']
+        y = self._variables['y']
+        z = self._variables['z']
 
-        if obs == 'norm':
-            return (x ** 2 + y ** 2 + z ** 2) ** 0.5
-        elif obs == 'mean':
-            return (x + y + z) / 3
+        observable_outputs = {}
+        for obs in observable_names:
+            if obs == 'norm':
+                observable_outputs[obs] = (x ** 2 + y ** 2 + z ** 2) ** 0.5
+            elif obs == 'mean':
+                observable_outputs[obs] = (x + y + z) / 3
+
+        return observable_outputs
 ```
 
 At this point, the content of `__init__.py` should be:
 
 ```python title="myenv/__init__.py"
+import numpy as np
 from badger import environment
-from badger.interface import Interface
 
 
 class Environment(environment.Environment):
 
     name = 'myenv'
 
-    def __init__(self, interface: Interface, params):
-        super().__init__(interface, params)
-        self.variables = {
-            'x': 0,
-            'y': 0,
-            'z': 0,
-        }
+    variables = {
+        'x': [0, 1],
+        'y': [0, 1],
+        'z': [0, 1],
+    }
+    observables = ['norm', 'mean']
 
-    @staticmethod
-    def list_vars():
-        return ['x', 'y', 'z']
+    # Internal variables start with a single underscore
+    _variables = {
+        'x': 0,
+        'y': 0,
+        'z': 0,
+    }
 
-    @staticmethod
-    def list_obses():
-        return ['norm', 'mean']
+    def get_variables(self, variable_names: list[str]) -> dict:
+        variable_outputs = {v: self._variables[v] for v in variable_names}
 
-    def _get_var(self, var):
-        return self.variables[var]
+        return variable_outputs
 
-    def _set_var(self, var, x):
-        self.variables[var] = x
+    def set_variables(self, variable_inputs: dict[str, float]):
+        for var, x in variable_inputs.items():
+            self._variables[var] = x
 
-    def _get_obs(self, obs):
-        x = self.variables['x']
-        y = self.variables['y']
-        z = self.variables['z']
+    def get_observables(self, observable_names: list[str]) -> dict:
+        x = self._variables['x']
+        y = self._variables['y']
+        z = self._variables['z']
 
-        if obs == 'norm':
-            return (x ** 2 + y ** 2 + z ** 2) ** 0.5
-        elif obs == 'mean':
-            return (x + y + z) / 3
+        observable_outputs = {}
+        for obs in observable_names:
+            if obs == 'norm':
+                observable_outputs[obs] = (x ** 2 + y ** 2 + z ** 2) ** 0.5
+            elif obs == 'mean':
+                observable_outputs[obs] = (x + y + z) / 3
+
+        return observable_outputs
 ```
 
 Alright! Our little env is almost done -- even though it doesn’t do much, it already has everything that we need for a Badger environment! To make the plugin complete, we should also incorporate some meta data (such as version number) of our env into `configs.yaml`:
@@ -252,7 +256,7 @@ name: myenv
 version: '0.1'
 dependencies:
   - badger-opt
-params: null
+params: {}
 variables:
   - x: 0 -> 1
   - y: 0 -> 1
@@ -264,21 +268,7 @@ observations:
 
 :::caution
 
-If you use an older version of Badger, you would encounter the following error when you do `badger env myenv`:
-
-```
-Can't instantiate abstract class Environment with abstract method get_default_params
-```
-
-To get around this issue, simply put the following method inside the `myenv` environment class definition:
-
-```python
-    @staticmethod
-    def get_default_params():
-        return None
-```
-
-Then you should get the expected printouts. The usage of the `get_default_params` method will be covered in [future sections](#incorperate-hyper-parameters).
+Please be sure to use Badger v1.0+
 
 :::
 
