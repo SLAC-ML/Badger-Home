@@ -2,9 +2,9 @@ name: documentation
 
 on:
   pull_request:
-    branches: [master]
+    branches: [slaclab]
   push:
-    branches: [master]
+    branches: [slaclab]
 
 jobs:
   checks:
