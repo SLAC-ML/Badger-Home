@@ -10,7 +10,7 @@ const darkCodeTheme = require('prism-react-renderer').themes.dracula
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Badger',
-  tagline: 'The Missing Optimizer in ACR',
+  tagline: 'The Go-To Optimizer in ACR',
   url: 'https://slaclab.github.io',
   baseUrl: '/Badger/',
   onBrokenLinks: 'throw',
