@@ -339,5 +339,12 @@ class Environment(environment.Environment):
         return 0
 ``` -->
 
+## Caveats
+
+### EPICS-related interface/environment
+
+When setting up an interface that uses EPICS. There is a need to run `epics.ca.clear_cache()`[^epics-docs] when both getting and setting values from PVs. This ensures that the new processes do not share connections with previous runs of Badger. Also to note, when you uses `PV.get()` to fetch data, the connections must be disconnected by the interface when they are no longer needed. If they are not properly disconnected they will persist between runs and cause a fault in Badger.
+
 [^intf-exp]: One example is that both LCLS and NSLS use Epics as the control system, so an Epics interface can be shared between the LCLS and NSLS Badger environments
 [^env-cons]: Environment can only record the VOCS, not the intermediate measurements. Say, to calculate the FEL pulse energy, one needs to average over a buffer of values. It is the averaged value being recorded in the archived run data, not the raw buffers
+[^epics-docs]: See https://pyepics.github.io/pyepics/ca.html for notes on the `clear_cache` method
