@@ -106,15 +106,15 @@ const config = {
             items: [
               {
                 label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/badger',
+                href: 'https://stackoverflow.com/questions/tagged/badger-opt',
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/badger',
+                label: 'Mailing List',
+                href: 'mailto:badger-opt@slac.stanford.edu',
               },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/badger',
+                label: 'Slack',
+                href: 'https://join.slack.com/share/enQtNzQ1MzcyNTQ1NjAwNC0zZWVkYWQ1OWUxODViYTdjZmNhODVmNmRhMjkwZTQ3ZmM1MGJjYWIzNGRmMzg5MzA1ZjIwMjIxMjMxYjQ0YTVl',
               },
             ],
           },
