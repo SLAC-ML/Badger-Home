@@ -2,9 +2,9 @@ name: documentation
 
 on:
   pull_request:
-    branches: [slaclab]
+    branches: [xopt-org]
   push:
-    branches: [slaclab]
+    branches: [xopt-org]
 
 jobs:
   checks:

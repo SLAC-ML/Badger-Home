@@ -11,12 +11,12 @@ const darkCodeTheme = require('prism-react-renderer').themes.dracula
 const config = {
   title: 'Badger',
   tagline: 'The Go-To Optimizer in ACR',
-  url: 'https://slaclab.github.io',
+  url: 'https://xopt-org.github.io',
   baseUrl: '/Badger/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'slaclab', // Usually your GitHub org/user name.
+  organizationName: 'xopt-org', // Usually your GitHub org/user name.
   projectName: 'Badger', // Usually your repo name.
   trailingSlash: false,
 
@@ -79,7 +79,7 @@ const config = {
             // dropdownActiveClassDisabled: true,
           },
           {
-            href: 'https://github.com/slaclab/Badger',
+            href: 'https://github.com/xopt-org/Badger',
             label: 'GitHub',
             position: 'right',
           },
@@ -127,7 +127,7 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/slaclab/Badger',
+                href: 'https://github.com/xopt-org/Badger',
               },
             ],
           },
