@@ -69,7 +69,7 @@ Shown in each of the examples is the predicted mean and uncertainty of each obje
 
 - In 1D the mean is shown by the solid line, while the 2 sigma confidence region on either side is shown as shaded regions
 
-- In 2D, the mean and variance are shown in separate plots
+- In 2D, the mean and variance are shown in separate plots (shown in step 3)
 
 #### One dimensional chart
 
