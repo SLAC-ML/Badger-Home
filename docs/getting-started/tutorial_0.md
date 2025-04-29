@@ -44,31 +44,31 @@ badger -g
 
 You should be able to see the main GUI like below:
 
-![Badger main GUI](/img/gui/main.png)
+![Badger main GUI](/img/UPDATE/gui/main.png)
 
 ## Run your first optimization
 
 Before you can run the optimization, you need to create the routine. Click the plus button to the right of the search bar, you'll be navigated to the routine editor:
 
-![Badger routine editor](/img/getting-started/create_1st_routine.png)
+![Badger routine editor](/img/UPDATE/getting-started/create_1st_routine.png)
 
 Where you can change the routine name and description in the **Metadata** section, as shown above. For your first routine, let's select `expected_improvement` generator[^generator] in the **Algorithm** section. In the **Environment + VOCS** section, select the sphere_2d environment that shipped with Badger.
 
 Now we can shape our optimization problem by configuring the VOCS:
 
-![Configure the VOCS](/img/getting-started/configure_vocs.png)
+![Configure the VOCS](/img/UPDATE/getting-started/configure_vocs.png)
 
 To archive the above configuration, simply click the blank cell on top of the checkboxes in the variable table to include all the two variables in the routine, then click the *Add Current* button in the **Initial Points** section to add the current values of the variables as the initial points where the optimization starts from. You of course can add more initial points as you wish but for now let's keep it simple -- we only start the run from the current values. Finally check the `f` observable shown in the objectives table and change the rule (direction of the optimization) to `MAXIMIZE`, this means we'll maximize `f` instead of minimize it (which is the default setting).
 
 Now click the *Save* button and we'll be landing back on the main GUI where you can see the monitors, while you'll notice the routine we just created is up there in the routine list, selected and ready to run!
 
-![Ready to run](/img/getting-started/ready_to_go.png)
+![Ready to run](/img/UPDATE/getting-started/ready_to_go.png)
 
 Now go ahead and click the green *Run* button, feel free to pause/resume the run anytime by clicking the button to the left of the run button, and click the run button (should be turned red now) again to terminate the run.
 
 Congrats! You just run your very first routine in Badger!
 
-![First run](/img/getting-started/first_run.png)
+![First run](/img/UPDATE/getting-started/first_run.png)
 
 ## Customize the environment
 
@@ -183,13 +183,13 @@ Now it's time to create our new routine with the newly created `sphere_3d` envir
 
 We start by selecting the first routine, then click the *routine editor* tab. Edit the name, description, and the VOCS:
 
-![Edit the first routine](/img/getting-started/configure_vocs_3d.png)
+![Edit the first routine](/img/UPDATE/getting-started/configure_vocs_3d.png)
 
 Note that we need to select the `sphere_3d` environment from the env selector and change the variable ranges in the new routine according to our target problem. We'll also change the initial point so that the optimization won't start with the best solution. Since our second problem is a minimization one, remember to change the direction of `f` to *MINIMIZE*. Once configuration is done, click *Save* to save it as a new routine, `my second routine`.
 
 Now we can just run it as we do for `my first routine`, stop whenever you feel right, you should see some optimization curves like this:
 
-![The 2nd run](/img/getting-started/second_run.png)
+![The 2nd run](/img/UPDATE/getting-started/second_run.png)
 
 Congrats! You have accomplished the Badger GUI tutorial! Hope that by this point you already have some feelings about what Badger is and how Badger works. Now you can continue and do the [CLI tutorial](tutorial_1) to get to know the other side of Badger, or you can jump directly to the [guides](../guides/create-a-plugin#create-an-environment-plugin) to adapt Badger to your own optimization problem, good luck!
 

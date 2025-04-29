@@ -12,11 +12,11 @@ Once you launch Badger in GUI mode, you'll have various Badger features to explo
 
 On Badger home page, click the *Plus* button (highlighted in the screenshot below):
 
-![Create new routine](/img/guides/create_new_routine.png)
+![Create new routine](../static/img/guides/create_new_routine.png)
 
 You'll land on the routine editor page:
 
-![Routine editor](/img/guides/routine_editor.png)
+![Routine editor](../static/img/guides/routine_editor.png)
 
 where you can select the generator to use, the environment to optimize on, and configure the VOCS.
 
@@ -24,7 +24,7 @@ where you can select the generator to use, the environment to optimize on, and c
 
 Hover one item in the routine list (highlighted below) and click it will select the specific routine:
 
-![Hover on routine](/img/guides/hover_on_routine.png)
+![Hover on routine](../static/img/guides/hover_on_routine.png)
 
 Once selected, the content in the [history browser](#browse-the-historical-runs) (on top of the run monitor) will change to show the runs corresponding to the selected routine only.
 
@@ -46,7 +46,7 @@ Of course, if there are no runs associate with the routine, you can edit and ren
 
 Hover the *Delete* button (the one with the trash can icon) on the routine you'd like to delete will highlight it in red, click the button and confirm on the confirmation dialog will delete the routine.
 
-![Delete a routine](/img/guides/delete_routine.png)
+![Delete a routine](../static/img/guides/delete_routine.png)
 
 Note that deleting a routine will **NOT** automatically delete all the runs associate with it. This behavior is intended to give users a chance to recover it if regretted later. Of course, if all the associated runs have already been deleted, then it will not be possible to recover the routine -- nevertheless you can [recreate it](#create-a-new-routine), creating a routine is not that hard after all.
 
@@ -54,17 +54,17 @@ Note that deleting a routine will **NOT** automatically delete all the runs asso
 
 You can use the search bar to filter the routines. Badger will try to match the routine names with the text you put in the search bar. Currently we don't support RegEx, but we plan to add the support in the future releases, along with the ability to search other metadata, such as descriptions.
 
-![Filter routines](/img/guides/filter_routines.png)
+![Filter routines](../static/img/guides/filter_routines.png)
 
 ### Browse the historical runs
 
 You can browse the historical runs in Badger by clicking the *Next*/*Previous* buttons in the history browser:
 
-![History browser](/img/guides/history_browser.png)
+![History browser](../static/img/guides/history_browser.png)
 
 or simply click on the combobox that shows the current run name, to trigger a dropdown menu that lists all the matched runs (categorized and sorted by run date and time). Clicking on a run in the menu will show the run data in the run monitor below.
 
-![History dropdown](/img/guides/history_dropdown.png)
+![History dropdown](../static/img/guides/history_dropdown.png)
 
 Note that the routine editor content will also be refreshed according to routine of the selected run.
 
@@ -72,7 +72,7 @@ Note that the routine editor content will also be refreshed according to routine
 
 Click the *Settings* button (with the little gear icon) on the bottom right of the Badger GUI will bring up the Badger settings dialog, where you can configure Badger as needed:
 
-![Configure Badger](/img/guides/settings.png)
+![Configure Badger](../static/img/guides/settings.png)
 
 As a side note, the routine name for the current run shown in the run monitor is displayed besides the *Settings* button.
 
@@ -80,7 +80,7 @@ As a side note, the routine name for the current run shown in the run monitor is
 
 Click the *Export*/*Import* button below the routine list will let you export the [**FILTERED** routines](#filter-routines) as a `.db` file or import the routines in a `.db` file.
 
-![Export/import routines](/img/guides/export_import_routines.png)
+![Export/import routines](../static/img/guides/export_import_routines.png)
 
 ## Run monitor
 
@@ -97,7 +97,7 @@ Note that for the second approach, Badger simply uses the routine that drove the
 
 :::
 
-![Control a run](/img/guides/control.png)
+![Control a run](../static/img/guides/control.png)
 
 To pause the run, click the *Pause/Resume* button to the right of the *Run/Stop* button. To resume a paused run, click the *Pause/Resume* button again.
 
@@ -114,7 +114,7 @@ Currently Badger supports two types of termination conditions:
 
 The convergence-based termination condition will be added soon.
 
-![Set termination condition](/img/guides/tc.png)
+![Set termination condition](../static/img/guides/tc.png)
 
 :::tip
 
@@ -128,13 +128,13 @@ For now, you can only use single termination condition. Multiple termination rul
 
 You can reset the environment to initial states after a run by clicking the *Reset* button. Note that you can only reset the environment that you just run, and you cannot reset the environment in the middle of a run. To achieve the latter, [terminate the run](#control-an-optimization-run) first and then reset.
 
-![Reset the env](/img/guides/control.png)
+![Reset the env](../static/img/guides/control.png)
 
 ### Inspect the solutions in a run
 
 You can either drag the yellow inspector line (the position will be synced across all monitors), or click inside the monitor, to select the solution you are interested in.
 
-![Inspect solutions](/img/guides/inspect_sol.png)
+![Inspect solutions](../static/img/guides/inspect_sol.png)
 
 The know the exact values of the variables/objectives of that solution, drag the horizontal handle below the action buttons up to open the data table, the solution selected on the monitor will be highlighted in the data table. You can select any region of the table and copy the data as you do in Excel sheets.
 
@@ -142,7 +142,7 @@ The know the exact values of the variables/objectives of that solution, drag the
 
 Click the star button to select the optimal solution according to the VOCS. Note that this action only selects the optimum, it does **NOT** set the environment with the selected solution. To dial in the optimal solution, [perform the dial in action](#dial-in-the-selected-solution).
 
-![Jump to optimum](/img/guides/jump_to_opt.png)
+![Jump to optimum](../static/img/guides/jump_to_opt.png)
 
 ### Dial in the selected solution
 
@@ -152,7 +152,7 @@ You can dial in any selected solution by clicking the *Dial-in* button (with the
 
 You can show the run on iteration-based x-axis or time-based x-axis. Simply select the desired x-axis type (`Iteration` or `Time`) in the *X Axis* dropdown menu in the visualization configuration bar highlighted below.
 
-![Configure visualization options](/img/guides/vis_options.png)
+![Configure visualization options](../static/img/guides/vis_options.png)
 
 :::tip
 
@@ -168,13 +168,13 @@ Sometimes it's convinient to show the variables in a normalized manner, so that 
 
 Click the red *Delete run* button (trash bin icon) at the bottom right of the run monitor to delete the current run shown on the run monitor. You'll be asked to confirm the delete action.
 
-![Delete a run](/img/guides/delete_run.png)
+![Delete a run](../static/img/guides/delete_run.png)
 
 ### Send record to logbook
 
 To send a log entry to the logbook directory[^logdir], click the blue button besides the [*Delete run* button](#delete-a-run).
 
-![Logbook and extension](/img/guides/ctrl_misc.png)
+![Logbook and extension](../static/img/guides/ctrl_misc.png)
 
 The log entry will include a screenshot of the run monitor and an xml file that summarizes the optimization run.
 
@@ -200,13 +200,13 @@ Routine editor enables the users to create/edit/save the routine easily. Below i
 
 Metadata of a routine contains the name and the description of the routine. You can change the description of a routine anytime by editing the content then clicking the *Update* button. Note that if you are creating a new routine then you don't have to click the *Update* button, since the metadata will be saved once you save the whole routine.
 
-![Set metadata](/img/guides/set_meta.png)
+![Set metadata](../static/img/guides/set_meta.png)
 
 ### Select and configure the generator
 
 To configure the generator in a routine, click the generator selector in the *Algorithm* section, then edit the generator parameters in the *Params* text box. Usually you don't need to change anything in the generator parameters -- the default values should work well for most cases.
 
-![Set generator](/img/guides/set_gen.png)
+![Set generator](../static/img/guides/set_gen.png)
 
 You can check the docs for the selected generator by clicking the *Open Docs* button.
 
@@ -214,7 +214,7 @@ You can check the docs for the selected generator by clicking the *Open Docs* bu
 
 To configure the environment in a routine, click the environment selector in the *Environment + VOCS* section, then edit the environment parameters (if any) in the *Params* text box.
 
-![Set environment](/img/guides/set_env.png)
+![Set environment](../static/img/guides/set_env.png)
 
 ### Configure the VOCS
 
@@ -233,7 +233,7 @@ Click on the left-most blank cell in the variable table header (the one on top o
 <p align="center">
   <img
     alt='Configure variables'
-    src={require("@site/static/img/guides/var.png").default}
+    src={require("../static/img/guides/var.png").default}
     style={{width: '70%'}}
   />
 </p>
@@ -255,7 +255,7 @@ Now we can go ahead and configure the objectives. It's very similar to the varia
 <p align="center">
   <img
     alt='Configure objectives'
-    src={require("@site/static/img/guides/obj.png").default}
+    src={require("../static/img/guides/obj.png").default}
     style={{width: '70%'}}
   />
 </p>
@@ -271,7 +271,7 @@ For the non-critical constraints, violations will **NOT** trigger a pause in a r
 <p align="center">
   <img
     alt='Configure constraints and states'
-    src={require("@site/static/img/guides/const.png").default}
+    src={require("../static/img/guides/const.png").default}
     style={{width: '70%'}}
   />
 </p>
