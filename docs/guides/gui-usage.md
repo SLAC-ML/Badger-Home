@@ -1,283 +1,191 @@
+# Using the GUI to Define an Optimization Problem
+
+## GUI Layout 
+
+The Badger GUI is an interface made for optimizing accelerator performance. Behind the scenes, Badger uses Xopt, a python package designed to support a wide variety of control system optimization problems and algorithms. There are four important sections to defining an optimization problem using the Badger GUI: **Environment**, **VOCS**, **Algorithm**, and **Metadata**. The Badger GUI organizes these into three tabs, with Environment + VOCS being combined into a single main tab.
+
+##### Environment
+
+The **Environment** section lets you select which physical or simulated system you are trying to optimize. At SLAC, possible environments include `LCLS`, `FACET`, and `LCLS_II`. The environment contains information about all the variables available within the system and their bounds, along with parameters such as number of points, trim delay, fault timeout, and other information related to the interaction between the optimizer and the physical or simulated environment.
+
+##### VOCS
+
+**VOCS** contains the subset of variables, objectives, and constraints which are being optimized within the environment. You can also add observables within the VOCS section, which the GUI will monitor and plot but won’t otherwise interact with. The “Constraints” and “Observables” sections are optional for defining an optimization and are collapsed by default. They can be accessed by clicking on **More** at the bottom of the Environment + VOCS tab.
+
+##### Algorithm
+
+The **Algorithm** section lets you select an algorithm to use for optimization. See “*Overview of Different Optimization Algorithms*” for a more detailed overview of different options. Common algorithms used at SLAC are expected improvement and nelder-mead.
+
+##### Metadata
+
+**Metadata** includes a name and description for the optimization routine.
+
+##### Loading a template
+
+If there is already a template for the optimization you’d like to run, click the **Load Template** button at the upper left of the **Environment + VOCS** tab, and select the appropriate template. Make sure to check the environment parameters, variables and variable ranges, objectives, constraints/observables, and selected algorithm before running the optimization.
+
 ---
-sidebar_position: 3
+
+## To Define a New Optimization Routine
+
+1. **Start by selecting the target environment** from the **Environment** dropdown. Click the **Parameters** button to expand the available environment parameters.
+
+2. **From the “Variables” table select devices to be optimized.**  
+   The variables table shows all the variables which have been included in the selected environment. You can also toggle the **Show Checked Only** checkbox to only display selected variables. If a device you’d like to try to optimize is not listed, you can scroll to the bottom of the table and enter a new PV. The **Min** and **Max** columns in the table show the bounds of the search space for optimization. If the **Automatic** checkbox above the table is checked, these bounds will be ± some percentage from the current value. Clicking **Set Variable Range** will open a dialog window showing that ratio, and an option to select either relative to current or relative to the full variable range. Unchecking **Automatic** allows you to manually set variable ranges by editing the values in the **Min** and **Max** columns.
+
+3. **If the “Automatic” checkbox is checked, selecting a variable will automatically add a set of initial points.**  
+   By default, these will be the current value followed by three random points within a fraction of the variable bounds centered around the current value. If **Automatic** is not checked, or to adjust the initial points, you can use the **Add Current** and **Add Random** buttons to configure your own initial points.
+
+4. **Select an objective from the “Objectives” table.**  
+   Make sure to select whether the objective should be maximized or minimized! Currently only single objective optimization is available, but multi-objective optimization will be supported in the future.
+
+5. **Add constraints and observables.**  
+   Beneath the **Objectives** table is a collapsable **More** section, which allows you to add Constraints and Observables. The constraints and observables available for selection are based on the selected environment.
+
+6. **Choose an optimization algorithm.**  
+   There are several different optimization algorithms available within the Badger GUI. Generally, **expected improvement** and **Nelder-Mead** are good choices for online accelerator optimization.
+
+7. **Metadata:**  
+   Provide a name and description for your optimization routine.
+
 ---
 
-# GUI Usage
-
-Once you launch Badger in GUI mode, you'll have various Badger features to explore. You can search through this page to get to the guide on any specify GUI feature, or if you believe a guide is missing for the topic you are interested in, please consider [raising an issue here](https://github.com/slaclab/Badger/issues/new) or [shooting us an email](mailto:zhezhang@slac.stanford.edu), many thanks :)
-
-## Home page
-
-### Create a new routine
-
-On Badger home page, click the *Plus* button (highlighted in the screenshot below):
-
-![Create new routine](/img/guides/create_new_routine.png)
-
-You'll land on the routine editor page:
-
-![Routine editor](/img/guides/routine_editor.png)
-
-where you can select the generator to use, the environment to optimize on, and configure the VOCS.
-
-### Select/deselect a routine
-
-Hover one item in the routine list (highlighted below) and click it will select the specific routine:
-
-![Hover on routine](/img/guides/hover_on_routine.png)
-
-Once selected, the content in the [history browser](#browse-the-historical-runs) (on top of the run monitor) will change to show the runs corresponding to the selected routine only.
-
-Click the selected routine again to deselect it. If no routine is selected, the history browser will show all the runs for all the routines.
-
-### Edit a routine
-
-After [select a routine](#selectdeselect-a-routine), click the *Routine Editor* tab on top of the [run monitor](#run-monitor), you'll be able to edit the routine and save the changes.
-
-:::tip
-
-One important/counterintuitive thing to keep in mind though, is that in Badger, if you have at least one run associates with the routine, you cannot edit and save the changed under the same routine name, you'll have to give the edited routine a new name. This behavior is to guarantee that each run can be mapped to the correct routine by the time it was run.
-
-Of course, if there are no runs associate with the routine, you can edit and rename it just fine.
-
-:::
-
-### Delete a routine
-
-Hover the *Delete* button (the one with the trash can icon) on the routine you'd like to delete will highlight it in red, click the button and confirm on the confirmation dialog will delete the routine.
-
-![Delete a routine](/img/guides/delete_routine.png)
-
-Note that deleting a routine will **NOT** automatically delete all the runs associate with it. This behavior is intended to give users a chance to recover it if regretted later. Of course, if all the associated runs have already been deleted, then it will not be possible to recover the routine -- nevertheless you can [recreate it](#create-a-new-routine), creating a routine is not that hard after all.
-
-### Filter routines
-
-You can use the search bar to filter the routines. Badger will try to match the routine names with the text you put in the search bar. Currently we don't support RegEx, but we plan to add the support in the future releases, along with the ability to search other metadata, such as descriptions.
-
-![Filter routines](/img/guides/filter_routines.png)
-
-### Browse the historical runs
-
-You can browse the historical runs in Badger by clicking the *Next*/*Previous* buttons in the history browser:
-
-![History browser](/img/guides/history_browser.png)
-
-or simply click on the combobox that shows the current run name, to trigger a dropdown menu that lists all the matched runs (categorized and sorted by run date and time). Clicking on a run in the menu will show the run data in the run monitor below.
-
-![History dropdown](/img/guides/history_dropdown.png)
-
-Note that the routine editor content will also be refreshed according to routine of the selected run.
-
-### Configure Badger settings
-
-Click the *Settings* button (with the little gear icon) on the bottom right of the Badger GUI will bring up the Badger settings dialog, where you can configure Badger as needed:
-
-![Configure Badger](/img/guides/settings.png)
-
-As a side note, the routine name for the current run shown in the run monitor is displayed besides the *Settings* button.
-
-### Export/import routines
-
-Click the *Export*/*Import* button below the routine list will let you export the [**FILTERED** routines](#filter-routines) as a `.db` file or import the routines in a `.db` file.
-
-![Export/import routines](/img/guides/export_import_routines.png)
-
-## Run monitor
-
-### Control an optimization run
-
-Start an optimization run by either:
-
-- [Select a routine](#selectdeselect-a-routine) and click the green *Run/Stop* button (with the play icon), or
-- [Browse the historical runs](#browse-the-historical-runs) and select the one you'd like to rerun, then click the *Run/Stop* button
-
-:::tip
-
-Note that for the second approach, Badger simply uses the routine that drove the selected historical run to run the new round of optimization. It does **NOT** continue the old run. That being said, the continue old run feature is planned for future releases of Badger.
-
-:::
-
-![Control a run](/img/guides/control.png)
-
-To pause the run, click the *Pause/Resume* button to the right of the *Run/Stop* button. To resume a paused run, click the *Pause/Resume* button again.
-
-Click the *Run/Stop* button again (turned red once the run started) to stop the run.
-
-### Set termination condition
-
-Click the small dropdown arrow on the *Run/Stop* button to open the run menu, select *Run until*, then configure the termination condition and run the optimization. The run will be terminated once the terminaton condition is met.
-
-Currently Badger supports two types of termination conditions:
-
-- Terminate when maximum evaluation reached, or
-- Terminate when maximum running time exceeded
-
-The convergence-based termination condition will be added soon.
-
-![Set termination condition](/img/guides/tc.png)
-
-:::tip
-
-Once you select the *Run until* action, the default behavior of the green *Run/Stop* button will change accordingly. The default behavior (*Run*, or *Run until*) will be reset to *Run* (means run forever) when Badger GUI is closed.
-
-:::
-
-For now, you can only use single termination condition. Multiple termination rules will be supported in the future.
-
-### Reset the environment
-
-You can reset the environment to initial states after a run by clicking the *Reset* button. Note that you can only reset the environment that you just run, and you cannot reset the environment in the middle of a run. To achieve the latter, [terminate the run](#control-an-optimization-run) first and then reset.
-
-![Reset the env](/img/guides/control.png)
-
-### Inspect the solutions in a run
-
-You can either drag the yellow inspector line (the position will be synced across all monitors), or click inside the monitor, to select the solution you are interested in.
-
-![Inspect solutions](/img/guides/inspect_sol.png)
-
-The know the exact values of the variables/objectives of that solution, drag the horizontal handle below the action buttons up to open the data table, the solution selected on the monitor will be highlighted in the data table. You can select any region of the table and copy the data as you do in Excel sheets.
-
-### Jump to the optimal solution
-
-Click the star button to select the optimal solution according to the VOCS. Note that this action only selects the optimum, it does **NOT** set the environment with the selected solution. To dial in the optimal solution, [perform the dial in action](#dial-in-the-selected-solution).
-
-![Jump to optimum](/img/guides/jump_to_opt.png)
-
-### Dial in the selected solution
-
-You can dial in any selected solution by clicking the *Dial-in* button (with the right-down arrow icon) besides the star button. A confirmation dialog will be popped up to give you a heads-up, in case that you click the button by accident (could be dangerous when you are using Badger to optimize a real machine!).
-
-### Change the horizontal axis
-
-You can show the run on iteration-based x-axis or time-based x-axis. Simply select the desired x-axis type (`Iteration` or `Time`) in the *X Axis* dropdown menu in the visualization configuration bar highlighted below.
-
-![Configure visualization options](/img/guides/vis_options.png)
-
-:::tip
-
-You can configure the visualization options anytime, in the middle of a run or not.
-
-:::
-
-### Normalize the variables for better visualization
-
-Sometimes it's convinient to show the variables in a normalized manner, so that you can observe all trends in the same frame. You can do that by selecting `Normalized` in the *Y Axis (Var)* dropdown menu. Check the *Relative* checkbox would show the variable changes relative to its initial value, you can combine the *Y Axis (Var)* options and the *Relative* options to fit the visualization to your own needs.
-
-### Delete a run
-
-Click the red *Delete run* button (trash bin icon) at the bottom right of the run monitor to delete the current run shown on the run monitor. You'll be asked to confirm the delete action.
-
-![Delete a run](/img/guides/delete_run.png)
-
-### Send record to logbook
-
-To send a log entry to the logbook directory[^logdir], click the blue button besides the [*Delete run* button](#delete-a-run).
-
-![Logbook and extension](/img/guides/ctrl_misc.png)
-
-The log entry will include a screenshot of the run monitor and an xml file that summarizes the optimization run.
-
-:::tip
-
-Currently the log entry format is fixed. Flexible/customizable log entry support will be added in the future releases of Badger.
-
-:::
-
-### Use data analysis/visualization extensions
-
-You can open the extension menu by clicking the green *Extension* button besides the [*Logbook* button](#send-record-to-logbook). Extensions in Badger provides capibilities more than simply monitoring the optimization curves. Extensions could parse the Gaussian model performance on the fly during the run, visualize the Pareto front in a multi-objective optimization, give insight on tuning knobs sensitivities wrt the objective, etc. Currently we have the following extensions shipped with Badger:
-
-- Pareto front viewer
-
-We plan to implement the extension system in a similar manner to the plugin system in Badger, so that each extension could be developed, maintained, and installed separately, for maximum flexibility and extensibility.
-
-## Routine editor
-
-Routine editor enables the users to create/edit/save the routine easily. Below is a simple guide on the main features of the routine editor.
-
-### Set the metadata
-
-Metadata of a routine contains the name and the description of the routine. You can change the description of a routine anytime by editing the content then clicking the *Update* button. Note that if you are creating a new routine then you don't have to click the *Update* button, since the metadata will be saved once you save the whole routine.
-
-![Set metadata](/img/guides/set_meta.png)
-
-### Select and configure the generator
-
-To configure the generator in a routine, click the generator selector in the *Algorithm* section, then edit the generator parameters in the *Params* text box. Usually you don't need to change anything in the generator parameters -- the default values should work well for most cases.
-
-![Set generator](/img/guides/set_gen.png)
-
-You can check the docs for the selected generator by clicking the *Open Docs* button.
-
-### Select and configure the environment
-
-To configure the environment in a routine, click the environment selector in the *Environment + VOCS* section, then edit the environment parameters (if any) in the *Params* text box.
-
-![Set environment](/img/guides/set_env.png)
-
-### Configure the VOCS
-
-The VOCS configuration panel is right below the environment configuration panel. It has 3 parts: variables configuration, objectives configuration, and constraints/states configurations (under the *More* subsection).
-
-On the variables configuration panel, you can filter the variables in the selected environment by its name, note that RegEx is supported here. For example, you can enter something like `Q[1-4]*` to match the variables start with `Q1`, `Q2`, `Q3`, and `Q4`.
-
-You can check the checkbox in front of each variable to include it in the optimization. Variables that are not selected will **NOT** be tuned during the run! You'll need to check at least one variable to make a valid routine.
-
-:::tip
-
-Click on the left-most blank cell in the variable table header (the one on top of all the variable checkboxes, besides the *Name* header cell) will check/uncheck all the filtered variables (all variables that shown in the table when the *Show Checked Only* checkbox is unchecked).
-
-:::
-
-<p align="center">
-  <img
-    alt='Configure variables'
-    src={require("@site/static/img/guides/var.png").default}
-    style={{width: '70%'}}
-  />
-</p>
-
-Check the *Show Checked Only* checkbox to only show the variables that would join the optimization.
-
-The *Min* and *Max* columns in the variable table show the hard limit[^hard-lim] of each variable (defined in the environment, usually limited by hardware). You can change the values in those two columns to adjust the variable ranges that you'd like to use in the optimization (say, you would like to start out conservatively -- so the variables should only change within 10% of the whole tunable ranges).
-
-:::tip
-
-You can also limit the variable ranges by clicking the *Limit Variable Range* button, it will give you options to limit all the selected variables ranges by percentage wrt their current values or the full tunable ranges in one go.
-
-:::
-
-Then you'll want to set the initial points (from which solutions the optimization would start), you can do it by edit the table under the *Initial Points* subsection. One common scenario is to start the optimization from the current solution, you can do that by clicking the *Add Current* button, this will insert the current solution to the initial points table.
-
-Now we can go ahead and configure the objectives. It's very similar to the variables configuration, the main difference is that this time you'll need to specific the rule[^rule] of each objective.
-
-<p align="center">
-  <img
-    alt='Configure objectives'
-    src={require("@site/static/img/guides/obj.png").default}
-    style={{width: '70%'}}
-  />
-</p>
-
-If needed, you can add constraints and states[^states] to the routine by configuring them in the expanded *More* subsection. For constraints, check the *Critical* checkbox would mark the corresponding constraint as a critical one, that would pause the optimization immediately once violated.
-
-:::caution
-
-For the non-critical constraints, violations will **NOT** trigger a pause in a run, and it might not affect the optimization behavior at all if the chosen generator (say, `neldermead`[^simplex]) doesn't support constraints.
-
-:::
-
-<p align="center">
-  <img
-    alt='Configure constraints and states'
-    src={require("@site/static/img/guides/const.png").default}
-    style={{width: '70%'}}
-  />
-</p>
-
-[^logdir]: Logbook directory is one of the configurations in Badger. You can check the current setting by running `badger config` in terminal, then check the value of the `BADGER_LOGBOOK_ROOT` key
-[^hard-lim]: Those are ranges that should never be violated, no matter how the routine would be configured
-[^rule]: Direction of the optimization, either `MAXIMIZE` or `MINIMIZE`
-[^states]: Variables or observables that you'd like to monitor during the run, but won't join the run directly
-[^simplex]: Aka Simplex
+# Running the Optimization
+
+Once the environment, variables, objectives, and algorithm (and optional constraints, observables, and metadata) have been defined, the optimization can be started by pressing the green **run** button at the lower center of the GUI. Badger will begin by measuring the objective at the initial points specified in the **Initial Points** table, and will then begin to optimize the selected variables using the chosen algorithm. When the scan is active, the green **run** button will turn into a red **stop** button.
+
+- Once the scan has started, it can be paused/resumed using the **play/pause** button to the left of the **run** button.
+- To end the optimization run, press the red **stop** button.
+
+After ending the optimization, you may want to take some sort of action on the variables/devices being optimized. Depending on the algorithm selected, the last point/state sampled may not be the best that was found during the optimization run. To select the best configuration of variables that was measured, press **Jump to Optimal** (star icon button) to the right of the stop/start button. Alternatively, clicking any point in the optimization plot will highlight the variable values at that point in the scan. Once you’ve chosen the solution you’d like to implement, press **Dial in solution** to set devices to the selected values. A message box will pop up asking you to confirm.
+
+To reset all the variables to their values at the beginning of the scan, press the **Reset Environment** button.
+
+While the optimization is running, the values of the variables, objectives, and (if selected) constraints and observables will be plotted in the plot section in the top right corner of the GUI. By default, the X-Axis displays the number of optimization iterations, and the Y-Axis for the variables plot is relative to each variable’s starting value. These options can be changed from the GUI via options in the top right corner, above the plots.
+
+---
+
+# Defining Template Files
+
+To save the current scan parameters as a template from the GUI, navigate to the **Metadata** tab. Click **Save as Template**, and enter an appropriate filename ending in “.yaml”. This will save the Environment, VOCS, Algorithm, and Metadata currently displayed on the GUI to a YAML file, including environment and algorithm parameters and relative variable ranges, and the configuration of initial points.
+
+Templates can also be directly saved or edited as YAML files, with the following format:
+
+```yaml
+name: ''            # name of template
+description: ''     # description of template
+environment:
+  name: ''          # environment name
+  params: {}        # environment parameters, depend on environment
+generator:
+  name:             # generator name
+  # params will depend on generator
+vocs:               # XOPT VOCS
+  constants: {}     # {constant_name: value}
+  constraints: {}   # {constraint_name: [GREATER_THAN or LESS_THAN, value]}
+  objectives: {}    # {objective_name: MINIMIZE or MAXIMIZE}
+  observables: []   # list of observable names
+  variables: {}     # {variable_name: [lower_bound, upper_bound]}
+                    
+                    # Note that the variable upper and lower bound should be
+                    # the absolute variable range limits, not the limit of the 
+                    # optimization. The range of the optimization is set based 
+                    # on vrange_limit_options for each variable, either as a 
+                    # fraction of the full range or ± a fraction of the
+                    # current value.
+
+vrange_limit_options: {} 
+
+                    # for each variable:
+                    #   variable: {limit_option_idx: 0 or 1, ratio_curr: 0.1, ratio_full: 0.1}
+                    # For example:
+                    #   QUAD:LTUH:620:BCTRL:
+                    #   limit_option_idx: 0
+                    #   ratio_curr: 0.1 
+                    #   ratio_full: 0.1
+                    # Note that ratio_curr is the ratio with respect to the current value
+                    # and ratio_full is the ratio with respect to the full variable range.
+                    # limit_option_idx 0 will use ratio_curr, 1 is ratio_full
+
+relative_to_current: true  # true or false.
+initial_point_actions: [{}]  # list of dictionaries
+
+                    # Will be read sequentially.
+                    # For example, the two most common options would look like:
+                    #
+                    # - type: add_curr     # will add the current value of selected vars
+                    # - config: 
+                    #     fraction: 0.1
+                    #     method: 0
+                    #     n_points: 3
+                    #   type: add_rand
+                    #
+                    # will add three random points for each variable, selected
+                    # from within 0.1*(the vrange limit ratio for that 
+                    # variable) around the current value – i.e. sample n random 
+                    # points from within a subset of the scan range
+
+critical_constraint_names: []  # list of constraints (from VOCS) to be marked as ‘critical’
+badger_version:     # optional but helpful
+xopt_version:       # optional but helpful
+```
+# Overview of Different Optimization Algorithms
+
+## Nelder-Mead
+
+Iterative downhill simplex algorithm which seeks to find local optima by sampling initial points and then using a heuristic to choose the next point during each iteration. Nelder-Mead has been widely used inside accelerator physics.
+
+**Advantages:**
+- Low computational cost 
+- Historically proven performance in the context of accelerator physics 
+- Automatic/adaptive hyperparameter specification depending on problem characteristics
+
+**Disadvantages:**
+- Local optimizer – sensitive to initial starting conditions 
+- Sensitive to measurement noise which can negatively impact convergence to optimum 
+- Scales poorly to higher dimensional problems 
+- Cannot handle observational constraints 
+
+## Extremum Seeking
+
+Perform small oscillations to measurement to slowly move towards minimum. This algorithm uses a sinusoidal sampling strategy for each parameter to slowly drift towards optimal operating conditions and track time dependent changes in the optimal operating conditions over time. It’s useful for time dependent optimization, where short term drifts in accelerator conditions can lead to a time dependent objective function.
+
+**Advantages:**
+- Low computational cost
+- Can track time-dependent drifts of the objective function to maintain an optimal operating configuration
+
+**Disadvantages:**
+- Local optimizer, sensitive to initial starting conditions
+- Additional hyperparameters that must be tuned to a given optimization problem
+- Scales poorly to higher dimensional problems
+- Cannot handle observational constraints
+
+## Expected Improvement
+
+Bayesian Optimization (BO) algorithms are machine learning-based algorithms that are particularly well suited to efficiently optimizing noisy objectives with few iterations. Using data collected during and/or prior to optimization, BO algorithms use Bayesian statistics to build a model of the objective function that predicts a distribution of possible function values at each point in parameter space. It then uses an acquisition function to make sampling decisions based on determining the global optimum of the objective function.
+
+**Advantages:**
+- Global or local optimization depending on algorithm specifications
+- Creates an online surrogate model of the objective and any constraint functions, which can be used during or after optimization
+- Can account for observational constraints
+- Can incorporate rich prior information about the optimization problem to improve convergence
+- Explicitly handles measurement uncertainty and/or noisy objectives
+
+**Disadvantages:**
+- Potentially significant computational costs, especially after many iterations
+- Numerous hyperparameters which can affect performance
+
+## RCDS
+
+Robust Conjugate Direction Search makes decisions via successive local approximations of the objective function to converge to an optimum. RCDS may be more efficient than Nelder-Mead but requires multiple iterations initially to establish a local model of the objective function before starting to optimize.
+
+**Advantages:**
+- Low computational cost
+- Historically proven performance in the context of accelerator physics
+- Can account for measurement noise via algorithm hyperparameter
+- Can control scaling of step size
+
+**Disadvantages:**
+- Local optimizer, sensitive to initial starting conditions
+- Scales poorly to higher dimensional problems
+- Cannot handle observational constraints
