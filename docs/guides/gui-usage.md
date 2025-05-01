@@ -4,23 +4,21 @@
 
 The Badger GUI is an interface made for optimizing accelerator performance. Behind the scenes, Badger uses Xopt, a python package designed to support a wide variety of control system optimization problems and algorithms. There are four important sections to defining an optimization problem using the Badger GUI: **Environment**, **VOCS**, **Algorithm**, and **Metadata**. The Badger GUI organizes these into three tabs, with Environment + VOCS being combined into a single main tab.
 
-##### Environment
+#### Environment + VOCS
 
-The **Environment** section lets you select which physical or simulated system you are trying to optimize. At SLAC, possible environments include `LCLS`, `FACET`, and `LCLS_II`. The environment contains information about all the variables available within the system and their bounds, along with parameters such as number of points, trim delay, fault timeout, and other information related to the interaction between the optimizer and the physical or simulated environment.
+The **Environment** defines available variables and observables for a specific machine or control system. At SLAC, possible environments include `LCLS`, `FACET`, and `LCLS_II`. Each environment contains information about the variables available within that system, such as their bounds, along with operational parameters for data collection such as number of points, trim delay, fault timeout, and other information related to the interaction between the optimizer and the physical or simulated environment.
 
-##### VOCS
+Within an environment, an optimization problem can be defined by selecting which variables to adjust, objectives to optimize, and any constraints to follow. **VOCS** represents the subset of variables, objectives, and constraints to be optimized within the environment. You can also add observables within the VOCS section, which the GUI will monitor and display but won’t otherwise interact with. The “Constraints” and “Observables” sections are optional for defining an optimization and are collapsed by default. They can be accessed by clicking on **More** at the bottom of the Environment + VOCS tab.
 
-**VOCS** contains the subset of variables, objectives, and constraints which are being optimized within the environment. You can also add observables within the VOCS section, which the GUI will monitor and plot but won’t otherwise interact with. The “Constraints” and “Observables” sections are optional for defining an optimization and are collapsed by default. They can be accessed by clicking on **More** at the bottom of the Environment + VOCS tab.
-
-##### Algorithm
+#### Algorithm
 
 The **Algorithm** section lets you select an algorithm to use for optimization. See “*Overview of Different Optimization Algorithms*” for a more detailed overview of different options. Common algorithms used at SLAC are expected improvement and nelder-mead.
 
-##### Metadata
+#### Metadata
 
 **Metadata** includes a name and description for the optimization routine.
 
-##### Loading a template
+#### Loading a template
 
 If there is already a template for the optimization you’d like to run, click the **Load Template** button at the upper left of the **Environment + VOCS** tab, and select the appropriate template. Make sure to check the environment parameters, variables and variable ranges, objectives, constraints/observables, and selected algorithm before running the optimization.
 
@@ -43,7 +41,7 @@ If there is already a template for the optimization you’d like to run, click t
    Beneath the **Objectives** table is a collapsable **More** section, which allows you to add Constraints and Observables. The constraints and observables available for selection are based on the selected environment.
 
 6. **Choose an optimization algorithm.**  
-   There are several different optimization algorithms available within the Badger GUI. Generally, **expected improvement** and **Nelder-Mead** are good choices for online accelerator optimization.
+   There are several different optimization algorithms available within the Badger GUI. Generally, **expected improvement** and **Nelder-Mead** are good choices for online accelerator optimization. To select an algorithm navigate to the "Algorithm" tab. To read more about different algorithms, see the “*Overview of Different Optimization Algorithms*” section below.
 
 7. **Metadata:**  
    Provide a name and description for your optimization routine.
@@ -52,12 +50,12 @@ If there is already a template for the optimization you’d like to run, click t
 
 # Running the Optimization
 
-Once the environment, variables, objectives, and algorithm (and optional constraints, observables, and metadata) have been defined, the optimization can be started by pressing the green **run** button at the lower center of the GUI. Badger will begin by measuring the objective at the initial points specified in the **Initial Points** table, and will then begin to optimize the selected variables using the chosen algorithm. When the scan is active, the green **run** button will turn into a red **stop** button.
+Once the environment, variables, objectives, and algorithm (and any optional constraints and observables) have been defined, the optimization can be started by pressing the green **run** button at the lower center of the GUI. Badger will begin by measuring the objective at the initial points specified in the **Initial Points** table, and will then begin to optimize the selected variables using the chosen algorithm. When the scan is active, the green **run** button will turn into a red **stop** button.
 
 - Once the scan has started, it can be paused/resumed using the **play/pause** button to the left of the **run** button.
 - To end the optimization run, press the red **stop** button.
 
-After ending the optimization, you may want to take some sort of action on the variables/devices being optimized. Depending on the algorithm selected, the last point/state sampled may not be the best that was found during the optimization run. To select the best configuration of variables that was measured, press **Jump to Optimal** (star icon button) to the right of the stop/start button. Alternatively, clicking any point in the optimization plot will highlight the variable values at that point in the scan. Once you’ve chosen the solution you’d like to implement, press **Dial in solution** to set devices to the selected values. A message box will pop up asking you to confirm.
+After ending the optimization, you may want to take some sort of action on the variables/devices being optimized. Depending on the algorithm selected, the last point/state sampled may not be the best that was found during the optimization run. To select the best configuration of variables that was measured, press **Jump to Optimal** (star icon button) to the right of the stop/start button. Alternatively, clicking any point in the optimization plot will highlight the variable values at that point in the scan. Once you’ve chosen the solution you’d like to implement, press **Dial in solution** to set devices to the selected values.
 
 To reset all the variables to their values at the beginning of the scan, press the **Reset Environment** button.
 
@@ -160,7 +158,7 @@ Perform small oscillations to measurement to slowly move towards minimum. This a
 - Scales poorly to higher dimensional problems
 - Cannot handle observational constraints
 
-## Expected Improvement
+## Expected Improvement (Bayesian Optimization)
 
 Bayesian Optimization (BO) algorithms are machine learning-based algorithms that are particularly well suited to efficiently optimizing noisy objectives with few iterations. Using data collected during and/or prior to optimization, BO algorithms use Bayesian statistics to build a model of the objective function that predicts a distribution of possible function values at each point in parameter space. It then uses an acquisition function to make sampling decisions based on determining the global optimum of the objective function.
 
