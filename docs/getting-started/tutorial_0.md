@@ -48,7 +48,7 @@ You should be able to see the main GUI like below:
 
 ## Run your first optimization
 
-Before you can run the optimization, you need to set up the environment, VOCS, and algorithm. For your first routine, let's select the `upper_confidence_bound` generator[^generator] in the **Algorithm** section. In the **Environment + VOCS** section, select the `sphere_2d` environment that's shipped with Badger.
+Before you can run the optimization, you need to set up the environment, VOCS, and algorithm. For your first routine, let's select the `expected_improvement` generator[^generator] in the **Algorithm** section. In the **Environment + VOCS** section, select the `sphere_2d` environment that's shipped with Badger.
 
 Now we can shape our optimization problem by configuring the VOCS. Click the blank cell on top of the checkboxes in the variable table to include all the variables. If automatic mode is enabled, the **Initial Points** table should populate after this action. If it's not enabled, click the *Add Current* button in the **Initial Points** section to add the current values of the variables as the initial points where the optimization starts from. You of course can add more initial points as you wish but for now let's keep it simple -- we only start the run from the current values. Finally check the `f` observable shown in the objectives table and change the rule (direction of the optimization) to `MAXIMIZE`, this means we'll maximize `f` instead of minimize it (which is the default setting).
 

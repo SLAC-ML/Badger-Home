@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # GUI Usage
 
-Once you launch Badger in GUI mode, you'll have various Badger features to explore. You can search through this page to get to the guide on any specify GUI feature, or if you believe a guide is missing for the topic you are interested in, please consider [raising an issue here](https://github.com/slaclab/Badger/issues/new) or [shooting us an email](mailto:zhezhang@slac.stanford.edu), many thanks :)
+Once you launch Badger in GUI mode, you'll have various Badger features to explore. You can search through this page to get to the guide on any specify GUI feature, or if you believe a guide is missing for the topic you are interested in, please consider [raising an issue here](https://github.com/xopt-org/Badger/issues/new) or [shooting us an email](mailto:zhezhang@slac.stanford.edu), many thanks :)
 
 ## Home page
 

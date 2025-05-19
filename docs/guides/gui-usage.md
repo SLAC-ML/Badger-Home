@@ -4,6 +4,8 @@ sidebar_position: 1
 
 # GUI Usage
 
+Once you launch Badger in GUI mode, you'll have various Badger features to explore. You can search through this page to get to the guide on any specify GUI feature, or if you believe a guide is missing for the topic you are interested in, please consider [raising an issue here](https://github.com/xopt-org/Badger/issues/new) or [shooting us an email](mailto:zhezhang@slac.stanford.edu), many thanks :)
+
 ## GUI Layout 
 
 The Badger GUI is an interface made for optimizing accelerator performance. Behind the scenes, Badger uses Xopt, a python package designed to support a wide variety of control system optimization problems and algorithms. There are four important sections to defining an optimization problem using the Badger GUI: **Environment**, **VOCS**, **Algorithm**, and **Metadata**. The Badger GUI organizes these into three tabs, with Environment + VOCS being combined into a single main tab.

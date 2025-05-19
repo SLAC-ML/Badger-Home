@@ -52,7 +52,7 @@ Before you can run the optimization, you need to create the routine. Click the p
 
 ![Badger routine editor](../static/img/getting-started/create_1st_routine.png)
 
-Where you can change the routine name and description in the **Metadata** section, as shown above. For your first routine, let's select `upper_confidence_bound` generator[^generator] in the **Algorithm** section. In the **Environment + VOCS** section, select the sphere_2d environment that shipped with Badger.
+Where you can change the routine name and description in the **Metadata** section, as shown above. For your first routine, let's select `expected_improvement` generator[^generator] in the **Algorithm** section. In the **Environment + VOCS** section, select the sphere_2d environment that shipped with Badger.
 
 Now we can shape our optimization problem by configuring the VOCS:
 
