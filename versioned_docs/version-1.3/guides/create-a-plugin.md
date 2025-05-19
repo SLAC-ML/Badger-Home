@@ -339,43 +339,5 @@ class Environment(environment.Environment):
         return 0
 ``` -->
 
-## Caveats
-
-### EPICS-related interface/environment
-
-When setting up an interface that uses EPICS. There is a need to run `epics.ca.clear_cache()`[^epics-docs] when both getting and setting values from PVs. This ensures that the new processes do not share connections with previous runs of Badger.
-
-Below is an example that where you should make the `epics.ca.clear_cache()` call in an interface. The same applies for `set_values()` -- you should put `epics.ca.clear_cache()` at the beginning of the function body.
-
-```python {2,6}
-def get_values(self, channel_names):
-    epics.ca.clear_cache()
-
-    channel_outputs = {}
-
-    values = epics.caget_many(channel_names, timeout=3)
-    for i, channel in enumerate(channel_names):
-        channel_outputs[channel] = values[i]
-
-    return channel_outputs
-```
-
-Also to note, when you uses `PV.get()` to fetch data, the connections must be disconnected by the interface when they are no longer needed. If they are not properly disconnected they will persist between runs and cause a fault in Badger. Here is the example code for the same epics interface but with the `PV` approach.
-
-```python {2,6,7}
-def get_values(self, channel_names):
-    epics.ca.clear_cache()
-
-    channel_outputs = {}
-
-    pvs = [epics.PV(name) for name in channel_names]
-    values = [p.get(timeout=3) for p in pvs]
-    for i, channel in enumerate(channel_names):
-        channel_outputs[channel] = values[i]
-
-    return channel_outputs
-```
-
 [^intf-exp]: One example is that both LCLS and NSLS use Epics as the control system, so an Epics interface can be shared between the LCLS and NSLS Badger environments
 [^env-cons]: Environment can only record the VOCS, not the intermediate measurements. Say, to calculate the FEL pulse energy, one needs to average over a buffer of values. It is the averaged value being recorded in the archived run data, not the raw buffers
-[^epics-docs]: See https://pyepics.github.io/pyepics/ca.html for notes on the `clear_cache` method

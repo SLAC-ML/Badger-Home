@@ -44,7 +44,7 @@ badger -g
 
 You should be able to see the main GUI like below:
 
-![Badger GUI](/img/gui/blank.png)
+![Badger GUI](../static/img/gui/blank.png)
 
 ## Run your first optimization
 
@@ -54,7 +54,7 @@ Now we can shape our optimization problem by configuring the VOCS. Click the bla
 
 Now go ahead and click the green *Run* button, feel free to pause/resume the run anytime by clicking the button to the left of the run button, and click the run button (should be turned red now) again to terminate the run.
 
-![Badger GUI after the first run](/img/gui/run_1.png)
+![Badger GUI after the first run](../static/img/gui/run_1.png)
 
 Congrats! You just run your very first routine in Badger!
 
@@ -64,7 +64,7 @@ Now it's time to do some more serious stuff -- such as performing optimization o
 
 First let's point Badger to a new folder where we would like to store our custom plugins, if necessary. At the bottom right of the Badger GUI window is a settings cog. When clicked it will open a popup to configure the Badger plugin root, logbook root, and archive root. The default folders should be reasonable, but these can be changed to suit your needs, if the defaults are difficult to access.
 
-![Badger GUI settings popup](/img/gui/settings.png)
+![Badger GUI settings popup](../static/img/gui/settings.png)
 
 Create a folder named `sphere_3d` in the environments folder beneath the plugin root. Then create the following files inside that `sphere_3d` folder:
 
@@ -147,7 +147,7 @@ Now it's time to create our new routine with the newly created `sphere_3d` envir
 
 Press *Run* and stop whenever you feel right, you should see some optimization curves like this:
 
-![Badger GUI after the second run](/img/gui/run_2.png)
+![Badger GUI after the second run](../static/img/gui/run_2.png)
 
 Congrats! You have accomplished the Badger GUI tutorial! Hope that by this point you already have some feelings about what Badger is and how Badger works. Now you can continue and do the [CLI tutorial](tutorial_1) to get to know the other side of Badger, or you can jump directly to the [guides](../guides/create-a-plugin#create-an-environment-plugin) to adapt Badger to your own optimization problem, good luck!
 
