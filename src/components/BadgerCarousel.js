@@ -1,10 +1,9 @@
 import React from 'react'
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import MainGUIUrl from '@site/static/img/gui/main.png'
-import EditorGUIUrl from '@site/static/img/gui/editor.png'
-import ConstGUIUrl from '@site/static/img/gui/constraints.png'
-import TableGUIUrl from '@site/static/img/gui/table.png'
+import Run1Url from '@site/static/img/gui/run_1.png'
+import Run2Url from '@site/static/img/gui/run_2.png'
+import Run2ExtUrl from '@site/static/img/gui/run_2_ext.png'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
@@ -30,16 +29,13 @@ const BadgerCarousel = () => {
       }}
     >
       <SwiperSlide>
-        <img alt="Badger run monitor" src={MainGUIUrl} />
+        <img alt="Badger running the default sphere2d environment" src={Run1Url} />
       </SwiperSlide>
       <SwiperSlide>
-        <img alt="Badger routine editor" src={EditorGUIUrl} />
+        <img alt="Badger running the tutorial sphere3d environment" src={Run2Url} />
       </SwiperSlide>
       <SwiperSlide>
-        <img alt="Badger constraints config" src={ConstGUIUrl} />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img alt="Badger data table" src={TableGUIUrl} />
+        <img alt="Badger running the tutorial sphere3d environment" src={Run2ExtUrl} />
       </SwiperSlide>
     </Swiper>
   )

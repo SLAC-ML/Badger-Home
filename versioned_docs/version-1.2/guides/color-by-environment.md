@@ -37,4 +37,4 @@ sphere_3d:
 
 Here is what the GUI then looks like
 
-![Color by environment](/img/guides/color-by-environment.png)
+![Color by environment](../static/img/guides/color-by-environment.png)
