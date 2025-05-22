@@ -144,7 +144,7 @@ const config = {
         appId: 'WPJQG5P0EZ',
         // Public API key: it is safe to commit it
         apiKey: 'b63157c581646ac999c9ce4c3569e3e3',
-        indexName: 'badger_slaclab',
+        indexName: 'badger_xopt-org',
         // Optional: see doc section below
         contextualSearch: true,
         // Optional: Algolia search parameters
