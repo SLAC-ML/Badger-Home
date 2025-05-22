@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# Create a Plugin
+# Create a plugin
 
 Plugins have two types:
 

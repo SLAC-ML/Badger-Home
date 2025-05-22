@@ -4,12 +4,6 @@ sidebar_position: 2
 
 # CLI Usage
 
-:::caution
-
-Badger's CLI mode is unsupported in this release. It may be supported again in the future.
-
-:::
-
 For all the implemented and planned CLI usage, please refer to [these slides](https://docs.google.com/presentation/d/1APlLgaRik2VPGL7FuxEUmwHvx6egTeIRaxBKGS1TnsE/edit#slide=id.ge68b2a5657_0_5). We'll highlight several common CLI use cases of Badger in the following sections.
 
 ## Get help

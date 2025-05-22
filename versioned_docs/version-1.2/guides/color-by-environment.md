@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 # Color by environment
@@ -37,4 +37,4 @@ sphere_3d:
 
 Here is what the GUI then looks like
 
-![Color by environment](/img/guides/color-by-environment.png)
+![Color by environment](../static/img/guides/color-by-environment.png)
