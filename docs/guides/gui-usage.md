@@ -18,19 +18,40 @@ Within an environment, an optimization problem can be defined by selecting which
 
 ### Algorithm
 
-The **Algorithm** section lets you select an algorithm to use for optimization. See “*Overview of Different Optimization Algorithms*” for a more detailed overview of different options. Common algorithms used at SLAC are expected improvement and nelder-mead.
+![Badger GUI algorithm panel](/img/gui/highlight_algorithm.png)
+
+The **Algorithm** section lets you select an algorithm to use for optimization (1), as well as set the parameters of the selected algorithm (2). See “*Overview of Different Optimization Algorithms*” for a more detailed overview of different options. Common algorithms used at SLAC are expected improvement and nelder-mead.
 
 ### Metadata
 
-**Metadata** includes a name and description for the optimization routine.
+![Badger GUI metadata panel](/img/gui/highlight_metadata.png)
 
-### Loading a template
+**Metadata** includes a name (1) and description (2) for the optimization routine. Beneath the description there is also a button to save the current run configuration as a template.
 
-If there is already a template for the optimization you’d like to run, click the **Load Template** button at the upper left of the **Environment + VOCS** tab, and select the appropriate template. Make sure to check the environment parameters, variables and variable ranges, objectives, constraints/observables, and selected algorithm before running the optimization.
+### Loading a Template
+
+![Badger GUI load template button](/img/gui/highlight_load_template.png)
+
+If there is already a template for the optimization you’d like to run, click the **Load Template** button at the upper left of the **Environment + VOCS** tab, and select the appropriate template. Make sure to check the environment parameters, variables and variable ranges, objectives, constraints/observables, and selected algorithm before running the optimization. See [the templates page](templates) for more information about templates.
+
+### History Navigator
+
+![Badger GUI history navigator panel](/img/gui/highlight_history_navigator.png)
+
+The History Navigator holds past runs, whose output can be loaded again with a single click on a given yaml file entry. Past runs are hierarchically organized by year, year and month, and year, month, and day, just like how they are organized in the Badger archive directory.
+
+### Plot Area and Run Data
+
+![Badger GUI plot area and run data panel](/img/gui/highlight_plot_area_run_data.png)
+
+1. **Plot Area** is where run data is visualized as a line graph.
+2. **Run Data** holds the raw data points which are fed into the plot.
 
 ---
 
 ## To Define a New Optimization Routine
+
+![Badger GUI new optimization, upper page](/img/gui/highlight_new_optimization_1.png)
 
 1. **Start by selecting the target environment** from the **Environment** dropdown. Click the **Parameters** button to expand the available environment parameters.
 
@@ -39,6 +60,8 @@ If there is already a template for the optimization you’d like to run, click t
 
 3. **If the “Automatic” checkbox is checked, selecting a variable will automatically add a set of initial points.**  
    By default, these will be the current value followed by three random points within a fraction of the variable bounds centered around the current value. If **Automatic** is not checked, or to adjust the initial points, you can use the **Add Current** and **Add Random** buttons to configure your own initial points.
+
+![Badger GUI new optimization, lower page](/img/gui/highlight_new_optimization_2.png)
 
 4. **Select an objective from the “Objectives” table.**  
    Make sure to select whether the objective should be maximized or minimized! Currently only single objective optimization is available, but multi-objective optimization will be supported in the future.
@@ -56,83 +79,25 @@ If there is already a template for the optimization you’d like to run, click t
 
 ## Running the Optimization
 
-Once the environment, variables, objectives, and algorithm (and any optional constraints and observables) have been defined, the optimization can be started by pressing the green **run** button at the lower center of the GUI. Badger will begin by measuring the objective at the initial points specified in the **Initial Points** table, and will then begin to optimize the selected variables using the chosen algorithm. When the scan is active, the green **run** button will turn into a red **stop** button.
+![Badger GUI action buttons](/img/gui/highlight_bottom_buttons.png)
 
-- Once the scan has started, it can be paused/resumed using the **play/pause** button to the left of the **run** button.
-- To end the optimization run, press the red **stop** button.
+Once the environment, variables, objectives, and algorithm (and any optional constraints and observables) have been defined, the optimization can be started by pressing the green **run** button (5) at the lower center of the GUI. Badger will begin by measuring the objective at the initial points specified in the **Initial Points** table, and will then begin to optimize the selected variables using the chosen algorithm. When the scan is active, the green **run** button will turn into a red **stop** button.
 
-After ending the optimization, you may want to take some sort of action on the variables/devices being optimized. Depending on the algorithm selected, the last point/state sampled may not be the best that was found during the optimization run. To select the best configuration of variables that was measured, press **Jump to Optimal** (star icon button) to the right of the stop/start button. Alternatively, clicking any point in the optimization plot will highlight the variable values at that point in the scan. Once you’ve chosen the solution you’d like to implement, press **Dial in solution** to set devices to the selected values.
+- Once the scan has started, it can be paused/resumed using the **play/pause** button (4) to the left of the **run** button.
+- To end the optimization run, press the red **stop** button (5).
 
-To reset all the variables to their values at the beginning of the scan, press the **Reset Environment** button.
+After ending the optimization, you may want to take some sort of action on the variables/devices being optimized. Depending on the algorithm selected, the last point/state sampled may not be the best that was found during the optimization run. To select the best configuration of variables that was measured, press the star button titled **Jump to Optimal** (6) to the right of the stop/start button. Alternatively, clicking any point in the optimization plot will highlight the variable values at that point in the scan. Once you’ve chosen the solution you’d like to implement, press **Dial in solution** (7) to set devices to the selected values.
+
+To reset all the variables to their values at the beginning of the scan, press the **Reset Environment** button (3).
+
+Pressing the extensions button (8) will allow opening extension windows such as BOVisualizer and ParetoFrontViewer.
+
+Pressing the delete button (1) will delete the stored run data from the History Navigator panel and on disk. Pressing the log button (2) will save the current run's log to the configured logbook directory.
 
 While the optimization is running, the values of the variables, objectives, and (if selected) constraints and observables will be plotted in the plot section in the top right corner of the GUI. By default, the X-Axis displays the number of optimization iterations, and the Y-Axis for the variables plot is relative to each variable’s starting value. These options can be changed from the GUI via options in the top right corner, above the plots.
 
 ---
 
-## Defining Template Files
-
-To save the current scan parameters as a template from the GUI, navigate to the **Metadata** tab. Click **Save as Template**, and enter an appropriate filename ending in “.yaml”. This will save the Environment, VOCS, Algorithm, and Metadata currently displayed on the GUI to a YAML file, including environment and algorithm parameters and relative variable ranges, and the configuration of initial points.
-
-Templates can also be directly saved or edited as YAML files, with the following format:
-
-```yaml
-name: ''            # name of template
-description: ''     # description of template
-environment:
-  name: ''          # environment name
-  params: {}        # environment parameters, depend on environment
-generator:
-  name:             # generator name
-  # params will depend on generator
-vocs:               # XOPT VOCS
-  constants: {}     # {constant_name: value}
-  constraints: {}   # {constraint_name: [GREATER_THAN or LESS_THAN, value]}
-  objectives: {}    # {objective_name: MINIMIZE or MAXIMIZE}
-  observables: []   # list of observable names
-  variables: {}     # {variable_name: [lower_bound, upper_bound]}
-                    
-                    # Note that the variable upper and lower bound should be
-                    # the absolute variable range limits, not the limit of the 
-                    # optimization. The range of the optimization is set based 
-                    # on vrange_limit_options for each variable, either as a 
-                    # fraction of the full range or ± a fraction of the
-                    # current value.
-
-vrange_limit_options: {} 
-
-                    # for each variable:
-                    #   variable: {limit_option_idx: 0 or 1, ratio_curr: 0.1, ratio_full: 0.1}
-                    # For example:
-                    #   QUAD:LTUH:620:BCTRL:
-                    #   limit_option_idx: 0
-                    #   ratio_curr: 0.1 
-                    #   ratio_full: 0.1
-                    # Note that ratio_curr is the ratio with respect to the current value
-                    # and ratio_full is the ratio with respect to the full variable range.
-                    # limit_option_idx 0 will use ratio_curr, 1 is ratio_full
-
-relative_to_current: true  # true or false.
-initial_point_actions: [{}]  # list of dictionaries
-
-                    # Will be read sequentially.
-                    # For example, the two most common options would look like:
-                    #
-                    # - type: add_curr     # will add the current value of selected vars
-                    # - config: 
-                    #     fraction: 0.1
-                    #     method: 0
-                    #     n_points: 3
-                    #   type: add_rand
-                    #
-                    # will add three random points for each variable, selected
-                    # from within 0.1*(the vrange limit ratio for that 
-                    # variable) around the current value – i.e. sample n random 
-                    # points from within a subset of the scan range
-
-critical_constraint_names: []  # list of constraints (from VOCS) to be marked as ‘critical’
-badger_version:     # optional but helpful
-xopt_version:       # optional but helpful
-```
 ## Overview of Different Optimization Algorithms
 
 ### Nelder-Mead

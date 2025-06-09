@@ -1,13 +1,13 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 ---
 
-# Create a Plugin
+# Create Environments and Interfaces
 
 Plugins have two types:
 
-- Interface: class
 - Environment: class
+- Interface: class
 
 Interface is the low-level layer between the machine/simulation and the environment that deals with the fundamental communications. It can be treated as an abstract of the underlying control system. Interface is optional **BUT** recommended! The pros of having an interface:
 
