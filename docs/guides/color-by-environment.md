@@ -1,8 +1,8 @@
 ---
-sidebar_position: 5
+sidebar_position: 4
 ---
 
-# Color by environment
+# Color by Environment
 
 You can color entries in the routine list and the border of the environment box in the routine editor based on the environment you choose. This is done by identifying colors with environments in a yaml file.
 
