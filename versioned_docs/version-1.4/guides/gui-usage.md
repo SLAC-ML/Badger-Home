@@ -16,6 +16,38 @@ The **Environment** defines available variables and observables for a specific m
 
 Within an environment, an optimization problem can be defined by selecting which variables to adjust, objectives to optimize, and any constraints to follow. **VOCS** represents the subset of variables, objectives, and constraints to be optimized within the environment. You can also add observables within the VOCS section, which the GUI will monitor and display but won’t otherwise interact with. The “Constraints” and “Observables” sections are optional for defining an optimization and are collapsed by default. They can be accessed by clicking on **More** at the bottom of the Environment + VOCS tab.
 
+### Loading a Template
+
+![Badger GUI load template button](/img/gui/highlight_load_template.png)
+
+If there is already a template for the optimization you’d like to run, click the **Load Template** button at the upper left of the **Environment + VOCS** tab, and select the appropriate template. Make sure to check the environment parameters, variables and variable ranges, objectives, constraints/observables, and selected algorithm before running the optimization. See [the templates page](templates) for more information about templates.
+
+### Run Buttons
+
+![Badger GUI action buttons](/img/gui/highlight_bottom_buttons.png)
+
+1. Deletes the stored run data from the History Navigator and on disk.
+2. Save the current run's log to the configured logbook directory.
+3. Resets all variables to their values at the beginning of the run.
+4. Pause or resume the active run.
+5. Start or end a run.
+6. Jump to the optimal combination of variable values in the Plot Area.
+7. Set devices to the selected values.
+8. Open extension windows such as BOVisualizer and ParetoFrontViewer.
+
+### Plot Area and Run Data
+
+![Badger GUI plot area and run data panel](/img/gui/highlight_plot_area_run_data.png)
+
+1. **Plot Area** is where run data is visualized as a line graph.
+2. **Run Data** holds the raw data points which are fed into the plot.
+
+### History Navigator
+
+![Badger GUI history navigator panel](/img/gui/highlight_history_navigator.png)
+
+The History Navigator holds past runs, whose output can be loaded again with a single click on a given yaml file entry. Past runs are hierarchically organized by year, year and month, and year, month, and day, just like how they are organized in the Badger archive directory.
+
 ### Algorithm
 
 ![Badger GUI algorithm panel](/img/gui/highlight_algorithm.png)
@@ -27,25 +59,6 @@ The **Algorithm** section lets you select an algorithm to use for optimization (
 ![Badger GUI metadata panel](/img/gui/highlight_metadata.png)
 
 **Metadata** includes a name (1) and description (2) for the optimization routine. Beneath the description there is also a button to save the current run configuration as a template.
-
-### Loading a Template
-
-![Badger GUI load template button](/img/gui/highlight_load_template.png)
-
-If there is already a template for the optimization you’d like to run, click the **Load Template** button at the upper left of the **Environment + VOCS** tab, and select the appropriate template. Make sure to check the environment parameters, variables and variable ranges, objectives, constraints/observables, and selected algorithm before running the optimization. See [the templates page](templates) for more information about templates.
-
-### History Navigator
-
-![Badger GUI history navigator panel](/img/gui/highlight_history_navigator.png)
-
-The History Navigator holds past runs, whose output can be loaded again with a single click on a given yaml file entry. Past runs are hierarchically organized by year, year and month, and year, month, and day, just like how they are organized in the Badger archive directory.
-
-### Plot Area and Run Data
-
-![Badger GUI plot area and run data panel](/img/gui/highlight_plot_area_run_data.png)
-
-1. **Plot Area** is where run data is visualized as a line graph.
-2. **Run Data** holds the raw data points which are fed into the plot.
 
 ---
 
@@ -95,66 +108,3 @@ Pressing the extensions button (8) will allow opening extension windows such as 
 Pressing the delete button (1) will delete the stored run data from the History Navigator panel and on disk. Pressing the log button (2) will save the current run's log to the configured logbook directory.
 
 While the optimization is running, the values of the variables, objectives, and (if selected) constraints and observables will be plotted in the plot section in the top right corner of the GUI. By default, the X-Axis displays the number of optimization iterations, and the Y-Axis for the variables plot is relative to each variable’s starting value. These options can be changed from the GUI via options in the top right corner, above the plots.
-
----
-
-## Overview of Different Optimization Algorithms
-
-### Nelder-Mead
-
-Iterative downhill simplex algorithm which seeks to find local optima by sampling initial points and then using a heuristic to choose the next point during each iteration. Nelder-Mead has been widely used inside accelerator physics.
-
-**Advantages:**
-- Low computational cost 
-- Historically proven performance in the context of accelerator physics 
-- Automatic/adaptive hyperparameter specification depending on problem characteristics
-
-**Disadvantages:**
-- Local optimizer – sensitive to initial starting conditions 
-- Sensitive to measurement noise which can negatively impact convergence to optimum 
-- Scales poorly to higher dimensional problems 
-- Cannot handle observational constraints 
-
-### Extremum Seeking
-
-Perform small oscillations to measurement to slowly move towards minimum. This algorithm uses a sinusoidal sampling strategy for each parameter to slowly drift towards optimal operating conditions and track time dependent changes in the optimal operating conditions over time. It’s useful for time dependent optimization, where short term drifts in accelerator conditions can lead to a time dependent objective function.
-
-**Advantages:**
-- Low computational cost
-- Can track time-dependent drifts of the objective function to maintain an optimal operating configuration
-
-**Disadvantages:**
-- Local optimizer, sensitive to initial starting conditions
-- Additional hyperparameters that must be tuned to a given optimization problem
-- Scales poorly to higher dimensional problems
-- Cannot handle observational constraints
-
-### Expected Improvement (Bayesian Optimization)
-
-Bayesian Optimization (BO) algorithms are machine learning-based algorithms that are particularly well suited to efficiently optimizing noisy objectives with few iterations. Using data collected during and/or prior to optimization, BO algorithms use Bayesian statistics to build a model of the objective function that predicts a distribution of possible function values at each point in parameter space. It then uses an acquisition function to make sampling decisions based on determining the global optimum of the objective function.
-
-**Advantages:**
-- Global or local optimization depending on algorithm specifications
-- Creates an online surrogate model of the objective and any constraint functions, which can be used during or after optimization
-- Can account for observational constraints
-- Can incorporate rich prior information about the optimization problem to improve convergence
-- Explicitly handles measurement uncertainty and/or noisy objectives
-
-**Disadvantages:**
-- Potentially significant computational costs, especially after many iterations
-- Numerous hyperparameters which can affect performance
-
-### RCDS
-
-Robust Conjugate Direction Search makes decisions via successive local approximations of the objective function to converge to an optimum. RCDS may be more efficient than Nelder-Mead but requires multiple iterations initially to establish a local model of the objective function before starting to optimize.
-
-**Advantages:**
-- Low computational cost
-- Historically proven performance in the context of accelerator physics
-- Can account for measurement noise via algorithm hyperparameter
-- Can control scaling of step size
-
-**Disadvantages:**
-- Local optimizer, sensitive to initial starting conditions
-- Scales poorly to higher dimensional problems
-- Cannot handle observational constraints
