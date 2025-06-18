@@ -16,6 +16,38 @@ The **Environment** defines available variables and observables for a specific m
 
 Within an environment, an optimization problem can be defined by selecting which variables to adjust, objectives to optimize, and any constraints to follow. **VOCS** represents the subset of variables, objectives, and constraints to be optimized within the environment. You can also add observables within the VOCS section, which the GUI will monitor and display but won’t otherwise interact with. The “Constraints” and “Observables” sections are optional for defining an optimization and are collapsed by default. They can be accessed by clicking on **More** at the bottom of the Environment + VOCS tab.
 
+### Loading a Template
+
+![Badger GUI load template button](/img/gui/highlight_load_template.png)
+
+If there is already a template for the optimization you’d like to run, click the **Load Template** button at the upper left of the **Environment + VOCS** tab, and select the appropriate template. Make sure to check the environment parameters, variables and variable ranges, objectives, constraints/observables, and selected algorithm before running the optimization. See [the templates page](templates) for more information about templates.
+
+### Run Buttons
+
+![Badger GUI action buttons](/img/gui/highlight_bottom_buttons.png)
+
+1. Deletes the stored run data from the History Navigator and on disk.
+2. Save the current run's log to the configured logbook directory.
+3. Resets all variables to their values at the beginning of the run.
+4. Pause or resume the active run.
+5. Start or end a run.
+6. Jump to the optimal combination of variable values in the Plot Area.
+7. Set devices to the selected values.
+8. Open extension windows such as BOVisualizer and ParetoFrontViewer.
+
+### Plot Area and Run Data
+
+![Badger GUI plot area and run data panel](/img/gui/highlight_plot_area_run_data.png)
+
+1. **Plot Area** is where run data is visualized as a line graph.
+2. **Run Data** holds the raw data points which are fed into the plot.
+
+### History Navigator
+
+![Badger GUI history navigator panel](/img/gui/highlight_history_navigator.png)
+
+The History Navigator holds past runs, whose output can be loaded again with a single click on a given yaml file entry. Past runs are hierarchically organized by year, year and month, and year, month, and day, just like how they are organized in the Badger archive directory.
+
 ### Algorithm
 
 ![Badger GUI algorithm panel](/img/gui/highlight_algorithm.png)
@@ -27,25 +59,6 @@ The **Algorithm** section lets you select an algorithm to use for optimization (
 ![Badger GUI metadata panel](/img/gui/highlight_metadata.png)
 
 **Metadata** includes a name (1) and description (2) for the optimization routine. Beneath the description there is also a button to save the current run configuration as a template.
-
-### Loading a Template
-
-![Badger GUI load template button](/img/gui/highlight_load_template.png)
-
-If there is already a template for the optimization you’d like to run, click the **Load Template** button at the upper left of the **Environment + VOCS** tab, and select the appropriate template. Make sure to check the environment parameters, variables and variable ranges, objectives, constraints/observables, and selected algorithm before running the optimization. See [the templates page](templates) for more information about templates.
-
-### History Navigator
-
-![Badger GUI history navigator panel](/img/gui/highlight_history_navigator.png)
-
-The History Navigator holds past runs, whose output can be loaded again with a single click on a given yaml file entry. Past runs are hierarchically organized by year, year and month, and year, month, and day, just like how they are organized in the Badger archive directory.
-
-### Plot Area and Run Data
-
-![Badger GUI plot area and run data panel](/img/gui/highlight_plot_area_run_data.png)
-
-1. **Plot Area** is where run data is visualized as a line graph.
-2. **Run Data** holds the raw data points which are fed into the plot.
 
 ---
 
