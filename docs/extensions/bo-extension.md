@@ -2,31 +2,31 @@
 sidebar_position: 1
 ---
 
-# BO Visualization
+# Bayesian optimization visualizer extension
 
 ## Overview
 
-The BO Visualization extension allows for an interactive graphical interpretation of the model of the objective and constraining functions generated during BO an optimization.
+The Bayesian optimization visualizer extension allows for an interactive graphical interpretation of the model of the objective and constraining functions generated during BO an optimization.
 
 ## Usage
 
-The extension can be used both statically and dynamically during or after a Badger optimization run. When used during an Badger optimization, the plots will update at a set interval in real time according to the variables and plot options set. Any plot options, reference points, and variables are saved throughout the use of that instance of the BO Visualization extension and are lost when the window is closed.
+The extension can be used both statically and dynamically during or after a Badger optimization run. When used during an Badger optimization, the plots will update at a set interval in real time according to the variables and plot options set. Any plot options, reference points, and variables are saved throughout the use of that instance of the Bayesian optimization visualizer extension and are lost when the window is closed.
 
 ## Constraints
 
-The BO Visualization extension is only available when conducting a Badger optimization that uses a Bayesian Generator such as the `expected_improvement` and `mobo` algorithms.
+The Bayesian optimization visualizer extension is only available when conducting a Badger optimization that uses a Bayesian Generator such as the `expected_improvement` and `mobo` algorithms.
 
 ## Tutorial
 
 ### Step 1: Start Badger optimization
 
-First step to use the BO Visualization is to use the Badger UI to run through an optimization using a compatible Bayesian algorithm.
+First step to use the Bayesian optimization visualizer is to use the Badger UI to run through an optimization using a compatible Bayesian algorithm.
 
-Once you have a converged on a solution or have stopped the optimization after a certain number of iterations, you can visualize the model of the objective and constraint functions by opening the BO Visualization extension.
+Once you have a converged on a solution or have stopped the optimization after a certain number of iterations, you can visualize the model of the objective and constraint functions by opening the Bayesian optimization visualizer extension.
 
 ### Step 2: How to access the extension
 
-![extension window](/img/extensions/bo/extension-window.png)
+![extension palette](/img/extensions/bo/extension-palette.png)
 
 Description:
 
@@ -35,9 +35,9 @@ Description:
 **2** - The Badger extensions palette contains all extensions included by default with Badger
     Note: not all extensions are applicable to every optimization configuration
 
-**3** - Access the BO Visualization extension by clicking the corresponding option within the Badger extensions palette
+**3** - Access the Bayesian optimization visualizer extension by clicking the corresponding option within the Badger extensions palette
 
-### Step 3: BO Visualization controls
+### Step 3: Bayesian optimization visualizer controls
 
 ![bo extension window](/img/extensions/bo/bo-window.png)
 
@@ -65,7 +65,7 @@ Description:
 
 - **No. of grid points** - the number of mesh points used to visualize the model value, higher number of points produces a higher resolution visualization, but at the cost of increased computation time
 
-**5** - The BO Visualization extension will automatically update the charts reactively upon any changes however, if at any point you believe the plots are out of sync then you can forcefully update the plots using the update button
+**5** - The Bayesian optimization visualizer extension will automatically update the charts reactively upon any changes however, if at any point you believe the plots are out of sync then you can forcefully update the plots using the update button
 
 ### Charts explanation
 
