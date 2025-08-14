@@ -10,7 +10,7 @@ The Bayesian optimization visualizer extension allows for an interactive graphic
 
 ## Usage
 
-The extension can be used both statically and dynamically during or after a Badger optimization run. When used during an Badger optimization, the plots will update at a set interval in real time according to the variables and plot options set. Any plot options, reference points, and variables are saved throughout the use of that instance of the Bayesian optimization visualizer extension and are lost when the window is closed.
+The extension can be used both statically and dynamically during or after a Badger optimization run. When used during a Badger optimization, the plots will update at a set interval in real time according to the variables and plot options set. Any plot options, reference points, and variables are saved throughout the use of that instance of the Bayesian optimization visualizer extension and are lost when the window is closed.
 
 ## Constraints
 
@@ -51,7 +51,9 @@ Description:
 
 - **Note:** In >2D spaces the reference point will display the input space value for axes that are not visualized on the plot
 
-**4** - If you wish to change what is information being displayed you can do so by modifying the various plot options
+**4** - The set best reference point button will set the reference point within the extension to the current best observed point in the optimization run according to Badger.
+
+**5** - If you wish to change what is information being displayed you can do so by modifying the various plot options
 
 - **Acquisition function** - value is maximized to select the next point to observe during Bayesian optimization.
   - **Note:** acquisition function is often exponentiated for visualization purposes.
@@ -61,11 +63,22 @@ Description:
 
 - **Prior Mean (Optional)** -
 
-- **Feasibility (Optional)** - the probability that all of the constraints are satisfied at a given location
+- **Feasibility (Optional)** - the probability that all the constraints are satisfied at a given location
 
 - **No. of grid points** - the number of mesh points used to visualize the model value, higher number of points produces a higher resolution visualization, but at the cost of increased computation time
 
-**5** - The Bayesian optimization visualizer extension will automatically update the charts reactively upon any changes however, if at any point you believe the plots are out of sync then you can forcefully update the plots using the update button
+**6** - The charts within the extension are interactive through mouse inputs and can display additional information.
+
+The possible actions are as follows:
+
+<!-- - `Left Click` - Select a data point to view both its coordinate values in the selected space and its index in the optimization run. -->
+- `Right Click` - Will allow you to set the reference point based on the current mouse position.
+- `Middle Click` - Will reset the view and reference points to their default states.
+- `Scroll` - Zoom in and out of the chart.
+
+**7** - For additional interaction options, you can also use the Matplotlib navigation toolbar to modify the current view or export the current plot.
+
+**8** - The Bayesian optimization visualizer extension will automatically update the charts reactively upon any changes however, if at any point you believe the plots are out of sync then you can forcefully update the plots using the update button
 
 ### Charts explanation
 
