@@ -26,7 +26,7 @@ Once you have a converged on a solution or have stopped the optimization after a
 
 ### Step 2: How to access the extension
 
-![extension palette](/img/extensions/bo/extension-palette.png)
+![extension palette](/img/extensions/extension-palette.png)
 
 Description:
 
