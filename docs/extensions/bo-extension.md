@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Bayesian optimization visualizer extension
+# Bayesian optimization visualizer
 
 ## Overview
 
