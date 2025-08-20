@@ -6,7 +6,7 @@ sidebar_position: 1
 
 Once you launch Badger in GUI mode, you'll have various Badger features to explore. You can search through this page to get to the guide on any specify GUI feature, or if you believe a guide is missing for the topic you are interested in, please consider [raising an issue here](https://github.com/xopt-org/Badger/issues/new) or [shooting us an email](mailto:zhezhang@slac.stanford.edu), many thanks :)
 
-## GUI Layout 
+## GUI Layout
 
 The Badger GUI is an interface made for optimizing accelerator performance. Behind the scenes, Badger uses Xopt, a python package designed to support a wide variety of control system optimization problems and algorithms. There are four important sections to defining an optimization problem using the Badger GUI: **Environment**, **VOCS**, **Algorithm**, and **Metadata**. The Badger GUI organizes these into three tabs, with Environment + VOCS being combined into a single main tab.
 
@@ -74,7 +74,7 @@ The **Algorithm** section lets you select an algorithm to use for optimization (
 3. **If the “Automatic” checkbox is checked, selecting a variable will automatically add a set of initial points.**  
    By default, these will be the current value followed by three random points within a fraction of the variable bounds centered around the current value. If **Automatic** is not checked, or to adjust the initial points, you can use the **Add Current** and **Add Random** buttons to configure your own initial points.
 
-![Badger GUI new optimization, lower page](/img/gui/highlight_new_optimization_2.png)
+   ![Badger GUI new optimization, lower page](/img/gui/highlight_new_optimization_2.png)
 
 4. **Select an objective from the “Objectives” table.**  
    Make sure to select whether the objective should be maximized or minimized! Currently only single objective optimization is available, but multi-objective optimization will be supported in the future.
@@ -83,7 +83,8 @@ The **Algorithm** section lets you select an algorithm to use for optimization (
    Beneath the **Objectives** table is a collapsable **More** section, which allows you to add Constraints and Observables. The constraints and observables available for selection are based on the selected environment.
 
 6. **Choose an optimization algorithm.**  
-   There are several different optimization algorithms available within the Badger GUI. Generally, **expected improvement** and **Nelder-Mead** are good choices for online accelerator optimization. To select an algorithm navigate to the "Algorithm" tab. To read more about different algorithms, see the "[Overview of Different Optimization Algorithms](#overview-of-different-optimization-algorithms)” section below.
+   There are several different optimization algorithms available within the Badger GUI. Generally, **expected improvement** and **Nelder-Mead** are good choices for online accelerator optimization. To select an algorithm navigate to the "Algorithm" tab.
+   <!-- To read more about different algorithms, see the "[Overview of Different Optimization Algorithms](#overview-of-different-optimization-algorithms)" section below. -->
 
 7. **Metadata:**  
    Provide a name and description for your optimization routine.
