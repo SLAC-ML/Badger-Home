@@ -1,5 +1,7 @@
-# Badger Homepage
+# THIS REPO IS ARCHIVED, DOCS NOW IN https://github.com/xopt-org/Badger/tree/main/documentation
 
-Any PR that merged into master branch of this repo will trigger an auto-deployment to the [Badger homepage](https://slac-ml.github.io/Badger/).
+## Badger Homepage
 
-This repo could be merged into [Badger core repo](https://github.com/SLAC-ML/Badger) soon.
+This repo is archived (read-only), as Badger documentation source and build scripts have been moved to the main Badger repo: https://github.com/xopt-org/Badger/tree/main/documentation.
+
+To update the docs, please make a PR to that location and the docs will be automatically built, and then deployed on merge into main.
